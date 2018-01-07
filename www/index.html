@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+  <head>
+    <title>TFGOnline</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+    <script type="text/javascript">
+      var TfAp = {};
+      var i18n = {};
+      var CurrentGameData = {};
+    </script>
+    <script src="./lib/aws-config.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+      window.onload = function() {
+        TfAp.awsConfig();
+      }
+    </script>
+  </head>
+
+  <body>
+    <app-main></app-main>
+    <app-navi></app-navi>
+
+    <!-- global -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="./tag/app-globalobject.js" charset="UTF-8"></script>
+
+    <!-- Lang -->
+    <script src="./tag/Lang_EN.js" charset="UTF-8"></script>
+    <script src="./tag/Lang_JP.js" charset="UTF-8"></script>
+
+    <!-- riot tags -->
+    <script type="riot/tag" src="./tag/tfg-help.tag.html"></script>
+    <script type="riot/tag" src="./tag/tfg-helpjp.tag.html"></script>
+    <script type="riot/tag" src="./tag/phina-main.tag.html"></script>
+    <script type="riot/tag" src="./tag/tfg-focus.tag.html"></script>
+    <script type="riot/tag" src="./tag/app-log.tag.html"></script>
+    <script type="riot/tag" src="./tag/app-note.tag.html"></script>
+    <script type="riot/tag" src="./tag/app-main.tag.html"></script>
+    <script type="riot/tag" src="./tag/app-navi.tag.html"></script>
+    <script type="riot/tag" src="./tag/tfg-auth.tag.html"></script>
+    <script type="riot/tag" src="./tag/tfg-book.tag.html"></script>
+
+    <!-- scripts we need -->
+    <script src="./lib/aws-sdk.min.js"></script>
+    <script src="./lib/dynamodb-marshaler.min.js"></script>
+    <script src="./lib/riot+compiler.min.js"></script>
+    <script src="./lib/route.min.js"></script>
+    <script src='./lib/phina.min.js'></script>
+
+    <!-- scripts we need -->
+    <script src="./tag/GameData.js" charset="UTF-8"></script>
+    <script src="./tag/MainScenes.js" charset="UTF-8"></script>
+    <script src="./tag/ExtendObjects.js" charset="UTF-8"></script>
+
+    <script src="./tag/PushScenes.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-GameClose.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-GameInit.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-LevelDown.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-LevelUp.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-MoveSquere.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereAngel.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereAppreciation.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereBlessing.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereDepression.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereFlash.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereFreewill.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereInsight.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereMiracle.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereService.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereSetback.js" charset="UTF-8"></script>
+    <script src="./tag/Scene-SquereTransformation.js" charset="UTF-8"></script>
+
+    <!-- mount this app -->
+    <script>
+      riot.compile(function() {
+        riot.mount('app-main','login')
+        <!-- riot.mount('app-main','app-main') -->
+        <!-- riot.mount('app-main','login') -->
+        route.start(true)
+      })
+    </script>
+
+    <style>
+      html {
+        margin: 0;
+        font-size: calc(100% + 1vw);
+        width: 100vw;
+        height: 100vh;
+      }
+
+      textarea {
+        font-size: calc(100% + 1vw);
+        height : calc((100% + 1vh)+4);
+        width : 50vw;
+      }
+
+      input {
+        font-size: calc(100% + 1vw);
+      }
+
+      body { 
+        background-color: #D8BFD8;
+        display: block;
+        font-family: 'Lucida Grande','Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+        left: 0px;
+        padding: 1em;
+        text-align: left;
+        color: #666;
+      }
+
+      button {
+        background-color: #1FADC5;
+        border: 1px solid rgba(0,0,0,.2);
+        font-size: 70%;
+        color: #fff;
+        padding: .4em 1.2em;
+        border-radius: 1.2em;
+        cursor: pointer;
+        margin: 0 .2em;
+        outline: none;
+      }
+
+      button[disabled] {
+        background-color: #ddd;
+        color: #aaa;
+      }
+
+      button.selectLang {
+        background-color: #DDDDDD;
+        border: 1px solid;
+        font-size: 70%;
+        color: #000;
+        cursor: pointer;
+        margin: 0 .2em;
+        outline: none;
+        border-radius: 0em;
+      }
+
+
+    </style>
+  </body>
+
+</html>
