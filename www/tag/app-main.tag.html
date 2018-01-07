@@ -1,0 +1,105 @@
+<app-main>
+
+  <article>
+    <tfg-focus show={isFocus}></tfg-focus>
+    <phina-main show={isBoard}></phina-main>
+    <app-note show={isNote}></app-note>
+    <app-help show={isHelp}></app-help>
+    <app-log show={isGameLog}></app-log>
+    <tfg-book show={isBook}></tfg-book>
+  </article>
+
+  <script>
+
+    var self = this
+    self.title = 'Now loading...'
+    self.body = ''
+
+    var r = route.create()
+
+    r('',           focus )
+    r('Book',       book )
+    r('GameBoard',  board )
+    r('Note',       note )
+    r('Log',        gamelog )
+    r('Help',       help )
+    r(              focus )
+
+    //最初はフォーカスへ
+    focus();
+
+    function focus() {
+      self.update({
+        isFocus   :true,
+        isBoard   :false,
+        isNote    :false,
+        isHelp    :false,
+        isGameLog :false,
+        isBook    :false,
+      })
+    }
+    function board() {
+      self.update({
+        isFocus   :false,
+        isBoard   :true,
+        isNote    :false,
+        isHelp    :false,
+        isGameLog :false,
+        isBook    :false,
+      })
+    }
+    function note() {
+      self.update({
+        isFocus   :false,
+        isBoard   :false,
+        isNote    :true,
+        isHelp    :false,
+        isGameLog :false,
+        isBook    :false,
+      })
+    }
+    function help() {
+      self.update({
+        isFocus   :false,
+        isBoard   :false,
+        isNote    :false,
+        isHelp    :true,
+        isGameLog :false,
+        isBook    :false,
+      })
+    }
+    function gamelog() {
+      self.update({
+        isFocus   :false,
+        isBoard   :false,
+        isNote    :false,
+        isHelp    :false,
+        isGameLog :true,
+        isBook    :false,
+      })
+    }
+    function book() {
+      self.update({
+        isFocus   :false,
+        isBoard   :false,
+        isNote    :false,
+        isHelp    :false,
+        isGameLog :false,
+        isBook    :true,
+      })
+    }
+
+  </script>
+
+  <style>
+    :scope{
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      margin-left: 5px;
+    }
+  </style>
+
+</app-main>

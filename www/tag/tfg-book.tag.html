@@ -1,0 +1,95 @@
+<tfg-book>
+  <article>
+    <div if={CurrentGameData.UserName != 'anonymous'}>
+      <p>{i18n.ButtonSaveGame}</p>
+      <button onclick={ saveGame }>{i18n.ButtonSaveGame}</button>
+      <hr>
+      <p>{i18n.LoadLastGames}</p>
+      <table>
+        <tr><th class='focus'>{i18n.Focus}</th><th class='time'>{i18n.SaveTime}</th><th class='time'>{i18n.StartTime}</th><tr>
+        <tr each={ item in items }>
+          <td class='small'><a onclick={ parent.LoadGame }>{item.PlayingFocus}</a></td>
+          <td class='small'>{convDate(item.LastSave)}</td>
+          <td class='small'>{convDate(item.StartTime)}</td>
+        </tr>
+      </table>
+      <p class='small'>{i18n.ToLoadTheGameClickLinkAbove}</p>
+    </div>
+    <div if={CurrentGameData.UserName == 'anonymous'}>
+      <p class='small'>{i18n.CantSaveOrLoadGames}</p>
+    </div>
+  </article>
+
+  <!-- this script tag is optional -->
+  <script>
+    var self = this;
+
+    LoadGame(e) {
+      CurrentGameData = e.item.item
+      riot.compile(function() {
+        riot.mount('app-main', 'app-main');
+        riot.mount('tfg-focus')
+        riot.mount('app-note')
+        riot.mount('app-log')
+        riot.mount('tfg-book')
+        riot.mount('app-help',i18n.helptag)
+        riot.mount('phina-main')
+      })
+    }
+
+    this.on('before-mount', function() {
+      TfAp.loadGameData(CurrentGameData.UserName)
+      .then(
+        TfAp.SetLanguage()
+      )
+      .then(
+        function(_gameDatas){
+          self.items = _gameDatas
+          self.update()
+        }
+      )
+    })
+
+    convDate(dt) {
+      return TfAp.FormatDate(dt)
+    }
+
+    saveGame(e) {
+      TfAp.WriteGameLog(i18n.SavedGame);
+      TfAp.saveGameData(true)
+      .then(
+      )
+      .catch(
+      );
+      
+    }
+
+    reLoad(e) {
+      riot.compile(function() {
+        //再表示するもののみ（naviはリロードするとエラーとなる）
+        riot.mount('tfg-book')
+      })
+    }
+  </script>
+
+  <style>
+    .focus {
+      font-size : 75%;
+      width : 40vw;
+    }
+    .time {
+      font-size : 75%;
+      width : 20vw;
+    }
+    .small {
+      font-size : 50%;
+    }
+    a {
+      text-decoration: underline;
+    }
+    a:hover {
+      font-size : 150%;
+      transition: font-size .2s;
+    }
+  </style>
+</tfg-book>

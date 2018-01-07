@@ -1,0 +1,287 @@
+<login>
+  <article>
+  <div class="mainarea">
+    Enter a Username:
+    <input id="login-username" type="text" class="text-edit" value="kazu"/><br>
+    Enter a Password:
+    <input id="login-password" type="password" class="text-edit" value="jkjkjk"/><br>
+
+    <button id="login-button" onclick={performLogIn} class="button">Log In</button>
+    <button id="gosign-button" onclick={goSignUp} class="button">Go SignUp</button>
+    <button id="anonymous-button" onclick={goAnonymous} class="button">{i18n.ButtonTestGameNoSave}</button>
+  </div>
+  <p>{dispmsg}</p>
+  <p>{dispCurrentLanguage}</p>
+    <button id="lang_en" onclick={LangEN} class="selectLang">English</button>
+    <button id="lang_jp" onclick={LangJP} class="selectLang">Japanese</button>
+  </article>
+
+  <script>
+
+    TfAp.SetLanguage(CurrentGameData.Language||'EN');
+    this.dispmsg = 'Please choose your preferred language.';
+    this.dispCurrentLanguage = i18n.CurrentLanguage;
+
+    LangEN() {
+      CurrentGameData.Language = 'EN';
+      TfAp.SetLanguage(CurrentGameData.Language);
+      this.dispCurrentLanguage = i18n.CurrentLanguage;
+    }
+
+    LangJP() {
+      CurrentGameData.Language = 'JP';
+      TfAp.SetLanguage(CurrentGameData.Language);
+      this.dispCurrentLanguage = i18n.CurrentLanguage;
+    }
+
+    goSignUp(e) {
+      riot.mount('app-main', 'signup');
+    }
+
+    goAnonymous(e) {
+      riot.mount('app-main', 'anonymous');
+    }
+
+    performLogIn(e) {
+      // get the username/password combination from the UI
+      var _username = document.getElementById("login-username").value;
+      var _password = document.getElementById("login-password").value;
+      var tmpdispmsg = '';
+
+
+      var cognitoSP = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
+
+      var params = {
+        AuthFlow: 'ADMIN_NO_SRP_AUTH', /* required */
+        ClientId: TfAp.awsClientId, /* required */
+        UserPoolId: TfAp.awsUserPoolId,
+        AuthParameters: {
+          USERNAME: _username, /* required */
+          PASSWORD: _password
+        }
+      };
+
+      cognitoSP.adminInitiateAuth(params, function(err, data) {
+        if (err) {
+          console.log(err, err.stack);
+          console.log(i18n.CertificationFailed);
+        } else {
+//          console.log(data);       // successful response
+          CurrentGameData.UserName = _username;
+          var date = new Date();
+          CurrentGameData.StartTime = date.getTime();
+          CurrentGameData.LastSave = date.getTime();
+          TfAp.WriteGameLog(i18n.LogAuthenticationSucceeded + CurrentGameData.UserName);
+          riot.compile(function() {
+            riot.mount('app-main','selectload');
+          })
+        }
+      });
+    }
+  </script>
+
+  <style>
+  </style>
+</login>
+
+<selectload>
+  <article>
+  <div class="mainarea">
+    {i18n.WouldContinueFromLast}<br>{i18n.Or}{i18n.WouldStartNewGame}
+    <button id="loadgame-button" onclick={loadGame} class="button">{i18n.ButtonLoadGame}</button>
+    <button id="newgame-button" onclick={newGame} class="button">{i18n.ButtonNewGame}</button>
+    <button id="back-button" onclick={goLogin} class="button">{i18n.ButtonBack}</button>
+  </div>
+  </article>
+
+  <script>
+    goLogin(e) {
+      riot.mount('app-main', 'login');
+    }
+
+    loadGame(e) {
+      TfAp.loadGameData(CurrentGameData.UserName)
+      .then(
+        TfAp.SetLanguage()
+      )
+      .then(
+        function(gameDatas){
+          if (gameDatas.length !== 0) {
+            CurrentGameData = gameDatas[0];
+          }
+          riot.compile(function() {
+            riot.mount('app-main', 'app-main');
+            riot.mount('app-navi');
+            riot.mount('tfg-focus')
+            riot.mount('app-note')
+            riot.mount('app-log')
+            riot.mount('tfg-book')
+            riot.mount('app-help',i18n.helptag)
+            riot.mount('phina-main')
+          })
+        }
+      );
+    }
+
+    newGame(e) {
+      TfAp.WriteGameLog(i18n.LogGameStart + CurrentGameData.UserName);
+      var date = new Date();
+      CurrentGameData.StartTime = date.getTime();
+      CurrentGameData.LastSave = date.getTime();
+      riot.compile(function() {
+        riot.mount('app-main','app-main');
+        riot.mount('app-navi');
+        riot.mount('tfg-focus')
+        riot.mount('app-note')
+        riot.mount('app-log')
+        riot.mount('tfg-book')
+        riot.mount('app-help',i18n.helptag)
+        riot.mount('phina-main')
+      });
+    }
+  </script>
+
+  <style>
+  </style>
+</selectload>
+
+
+<signup>
+  <div class="mainarea">
+    Enter a Username:
+    <input id="signup-username" type="text" class="text-edit" value="kazu"/><br>
+    Enter a Password:
+    <input id="signup-password" type="password" class="text-edit" value="jkjkjk"/><br>
+    Enter a email:
+    <input id="signup-email" type="text" class="text-edit" value="kazu7108+aws@gmail.com"/>
+    <button id="register-button" onclick={performSignUp} class="button">Sign Up</button>
+    <button id="login-button" onclick={goLogin} class="button">Go Login</button>
+  </div>
+  <p>{dispmsg}</p>
+
+  <script>
+    goLogin(e) {
+      riot.mount('app-main', 'login');
+    }
+
+    performSignUp(e) {
+      // get the username/password combination from the UI
+      var _username = document.getElementById("signup-username").value;
+      var _password = document.getElementById("signup-password").value;
+      var _email = document.getElementById("signup-email").value;
+
+      var cognitoSP = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
+
+      var params = {
+        ClientId: TfAp.awsClientId, /* required */
+        Password: _password, /* required */
+        Username: _username, /* required */
+        SecretHash : TfAp.awsSecretHash,
+        UserAttributes: [
+          {
+            Name: 'email', /* required */
+            Value: _email
+          }
+        ]
+      };
+
+      cognitoSP.signUp(params, function(err, data) {
+        if (err) {
+          console.log(err, err.stack)
+          this.dispmsg = i18n.SignUpFailed;
+        } else {
+          console.log(data);       // successful response
+          riot.mount('app-main', 'regist');
+        }
+      });
+    }
+  </script>
+
+  <style>
+  </style>
+</signup>
+
+<regist>
+  <div class="mainarea">
+    Enter a Username:
+    <input id="regist-username" type="text" class="text-edit" value="kazu"/><br>
+    Enter a code:
+    <input id="regist-code" type="text" class="text-edit" value=""/>
+    <button id="register-button" onclick={performRegist} class="button">Regist</button>
+  </div>
+  <p>{dispmsg}</p>
+
+  <script>
+    performRegist(e) {
+      // get the username/password combination from the UI
+      var _username = document.getElementById("regist-username").value;
+      var _code = document.getElementById("regist-code").value;
+
+      var cognitoSP = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
+
+      var params = {
+        ClientId: TfAp.awsClientId, /* required */
+        ConfirmationCode: _code, /* required */
+        Username: _username /* required */
+      };
+
+      cognitoSP.confirmSignUp(params, function(err, data) {
+        if (err) {
+          console.log(err, err.stack)
+          this.dispmsg = i18n.RegistFailed;
+        } else {
+          CurrentGameData.UserName = _username;
+          TfAp.WriteGameLog(i18n.LogGameStart + CurrentGameData.UserName);
+          riot.compile(function() {
+            riot.mount('app-main', 'app-main');
+            riot.mount('app-navi');
+            riot.mount('tfg-focus')
+            riot.mount('app-note')
+            riot.mount('app-log')
+            riot.mount('tfg-book')
+            riot.mount('app-help',i18n.helptag)
+            riot.mount('phina-main')
+          })
+        }
+      });
+    }
+  </script>
+
+  <style>
+  </style>
+</regist>
+
+<anonymous>
+  <div class="mainarea">
+    Confirm:You can not save even if you play this way. Are you sure?<br>
+    {i18n.Confirm}：{i18n.WouldStartNoSave}<br>
+    <button id="ok-button" onclick={goTestPlay} class="button">OK</button>
+    <button id="login-button" onclick={goLogin} class="button">Go Login</button>
+  </div>
+
+  <script>
+    goLogin(e) {
+      riot.mount('app-main', 'login');
+    }
+
+    goTestPlay(e) {
+      var date = new Date();
+      CurrentGameData.StartTime = date.getTime();
+      CurrentGameData.LastSave = date.getTime();
+      CurrentGameData.UserName = 'anonymous';
+      TfAp.WriteGameLog(i18n.LogGameStart + CurrentGameData.UserName);
+      riot.compile(function() {
+        riot.mount('app-main', 'app-main');
+        riot.mount('app-navi');
+        riot.mount('tfg-focus')
+        riot.mount('app-note')
+        riot.mount('app-log')
+        riot.mount('app-help',i18n.helptag)
+        riot.mount('phina-main')
+      })
+    }
+  </script>
+
+  <style>
+  </style>
+</anonymous>

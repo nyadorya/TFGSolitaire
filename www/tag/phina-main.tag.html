@@ -1,0 +1,113 @@
+<phina-main>
+
+  <article>
+    <div class="phina-frame" id="phina-frame"></div>
+    <div class="overlay" id="overlay">
+      <div class='overlay-text'>{text}</div>
+      <div class="overlay-input">
+        <input type='text' maxlength=85 onkeyup={ edit } value={ takeFeeling } placeholder={placeholder}>
+        <button onclick={ listenUserVoice } disabled={ takeFeeling == '' || takeFeeling == void 0 }>{i18n.Decision}</button>
+        <button onclick={ pushCancel }>{i18n.Cancel}</button>
+      </div>
+    </div>
+  </article>
+
+  <script>
+    this.text = TfAp.OverLayMessage;
+    this.placeholder = TfAp.OverLayPlaceHolder;
+    this.takeFeeling = '';
+
+    phina.globalize();
+
+    this.on('mount', function(){
+      phina.main(function() {
+        var app = GameApp({
+          fit:true,  //フィットしてない
+          width:640,
+          height:960,
+          startLabel: 'load',
+          scenes: TfAp.MainScenes,
+        });
+        this.app = app;
+        document.getElementById("phina-frame").appendChild(app.domElement);
+        app.run();
+      });
+    });
+
+    //timerとkickUpdateで疑似的に動的更新
+    kickUpdate() {
+      if (this.text != TfAp.OverLayMessage) {
+        this.text = TfAp.OverLayMessage;
+        this.placeholder = TfAp.OverLayPlaceHolder;
+        this.update();
+      }
+    }
+    var timer = setInterval(this.kickUpdate, 1000)
+
+    edit(e) {
+      this.takeFeeling = e.target.value;
+    }
+
+    pushCancel(e) {
+      TfAp.OverLayCancel = true;
+      this.goback();
+    }
+
+    listenUserVoice(e) {
+      //入力値が変わった場合に処理を進める。
+      //こうしないとpopした後のInputScene側で処理できない。
+      if (TfAp.OverLayInput != this.takeFeeling) {
+        TfAp.OverLayInput = this.takeFeeling;
+        this.goback();
+      }
+    }
+
+    goback() {
+      //次に利用するときのことを考慮し初期化
+      this.text = '';
+      this.takeFeeling = '';
+
+      //オーバーレイ画面解除
+      document.getElementById("overlay").style.display='none';
+    }
+
+  </script>
+
+  <style>
+    div.phina-frame {
+      display: block;
+    }
+    div.overlay {
+      position:absolute;
+      top: 0;
+      left: 0;
+      width: 80vw;
+      height: 60vh;
+      display: none;
+      background-color: #4B0082;
+      opacity:0.9;
+      transition-property: all;
+      transition-duration: 300ms;
+      transition-delay: 0s;
+      transition-timing-function: ease;
+    }
+
+    div.overlay-text {
+      position: absolute;
+      top: 5vh;
+      left: 3vw;
+      color: white;
+      opacity:1.0;
+    }
+    div.overlay-input {
+      position: absolute;
+      top: 40vh;
+      left: 3vw;
+      width: 80vw;
+      color: black;
+      opacity:1.0;
+    }
+
+  </style>
+
+</phina-main>

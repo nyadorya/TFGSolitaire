@@ -1,0 +1,108 @@
+<app-note>
+  <article>
+    <h1>{i18n.PlayNote}</h1>
+    <p>{i18n.KeepNoteInGame}</p>
+    <ul>
+      <li each={ items }>
+        <label class={ completed: done }>
+        <input type="checkbox" checked={done} onclick={toggle}>{ note }
+        </label>
+      </li>
+    </ul>
+    <form onsubmit={ add }>
+      <input onkeyup={ edit } value={ text||'' } placeholder="Note">
+      <button disabled={!text}>Add #{ items.length + 1 }</button>
+      <button type="button" disabled={ items.filter(onlyDone).length == 0 } onclick={ removeAllDone }>
+      X{ items.filter(onlyDone).length }</button>
+    </form>
+  </article>
+
+  <!-- this script tag is optional -->
+  <script>
+    var _items = [];
+    for (_loadmemo in CurrentGameData.PlayNotes) {
+      _items.push({note:CurrentGameData.PlayNotes[_loadmemo]});
+    }
+    this.items = _items
+
+    edit(e) {
+      this.text = e.target.value;
+    }
+
+    add(e) {
+      if ( this.text ) {
+        var d = new Date();
+
+        _memo = this.text + ' (' + d.getFullYear() + '/' + (d.getMonth()+1) + '/' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds() +')'
+
+        //この画面用の配列に代入
+        this.items.push({note:_memo})
+
+        //ゲームデータに保存
+        CurrentGameData.PlayNotes = [];
+        for (_memo in this.items) {
+          CurrentGameData.PlayNotes.push(this.items[_memo].note);
+        }
+
+
+        //ゲームログに書き込む。
+        TfAp.WriteGameLog(i18n.LogNote + this.text)
+
+        this.text = ''
+        //デフォルトアクションを抑止する
+        //通常、アンカーをクリックすると href で指定したリンク先に飛ぶがそれを阻止する
+        e.preventDefault();
+      }
+    }
+
+    toggle(e) {
+      var item = e.item
+      item.done = !item.done
+      return true
+    }
+
+    removeAllDone(e) {
+      this.items = this.items.filter(function(item) {
+        return !item.done
+      })
+
+      //プレイノートを削除分を除いて再登録
+      CurrentGameData.PlayNotes = [];
+      for (_memo in this.items) {
+        CurrentGameData.PlayNotes.push(this.items[_memo].note);
+      }
+
+      //ゲームログに書き込む。
+      TfAp.WriteGameLog(i18n.LogNoteDelete)
+    }
+
+    onlyDone(item) {
+      return item.done
+    }
+  </script>
+
+  <style>
+    form input {
+      padding: .4em;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+    }
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      list-style-type: none;
+      padding: .2em 0;
+    }
+
+    .completed {
+      text-decoration: line-through;
+    }
+
+    label {
+      cursor: pointer;
+    }
+  </style>
+</app-note>

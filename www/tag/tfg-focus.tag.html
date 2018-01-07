@@ -1,0 +1,120 @@
+<tfg-focus>
+  <article>
+    <h1>{i18n.Focus}</h1>
+      <p>{userFocus}</p>
+      <textarea id='enterFocus' placeholder="{i18n.InputFocus}" show={!userFocus}></textarea>
+      <br>
+      <button onclick={ enterFocus } disabled={userFocus} show={!userFocus}>{i18n.Decision}</button>
+
+<!--
+    <h1>FOCUS(プレイフォーカス)を象徴するキーワード</h1>
+    <ul>
+      <li each={ items }>
+        <label class={ completed: done }>
+          <input type="checkbox" checked={done} onclick={toggle} disabled={done}>{ memo }
+        </label>
+      </li>
+    </ul>
+      <input placeholder="Keywords" onkeyup={ edit } value={ text||'' } hide={items.length - items.filter(onlyDone).length > 2}>
+      <button disabled={!text} onclick={ add } hide={items.length - items.filter(onlyDone).length > 2}>キーワード #{ items.length + 1 }追加</button>
+      <button type="button" disabled={ items.filter(onlyDone).length == 0 } onclick={ removeAllDone } hide={userFocus}>
+      X{ items.filter(onlyDone).length }</button>
+    <ul>
+      <li hide={items.length - items.filter(onlyDone).length > 2}>プレイフォーカスに沿ったキーワードを３つ入力してください。</li>
+      <li show={items.length - items.filter(onlyDone).length == 3}>チェックすると他のキーワードが入力可能</li>
+      <li hide={!userFocus}>プレイプレイフォーカスとキーワードを修正するには「再入力」ボタンを押下してください。</li>
+    </ul>
+    <button onclick={ changeFocus } hide={!userFocus}>再入力</button>
+-->
+  </article>
+
+  <!-- this script tag is optional -->
+  <script>
+    this.userFocus = CurrentGameData.PlayingFocus;
+
+
+    var _items = [];
+    for (_loadmemo in CurrentGameData.PlayingKeyWords) {
+      _items.push({memo:CurrentGameData.PlayingKeyWords[_loadmemo]});
+    }
+    this.items = _items
+
+    enterFocus(e) {
+      this.userFocus = document.getElementById("enterFocus").value;
+      CurrentGameData.PlayingFocus = document.getElementById("enterFocus").value;
+    }
+
+    changeFocus(e) {
+      document.getElementById("enterFocus").value = this.userFocus;
+      this.userFocus = '';
+    }
+
+    edit(e) {
+      this.text = e.target.value;
+    }
+
+    add(e) {
+      if ( this.text ) {
+        //この画面用の配列に代入
+        this.items.push({memo:this.text})
+
+        //ゲームデータに保存
+        CurrentGameData.PlayingKeyWords.push(this.text)
+
+        this.text = ''
+        //デフォルトアクションを抑止する
+        //通常、アンカーをクリックすると href で指定したリンク先に飛ぶがそれを阻止する
+        e.preventDefault();
+      }
+    }
+
+    toggle(e) {
+      var item = e.item
+      item.done = !item.done
+      return true
+    }
+
+    removeAllDone(e) {
+      this.items = this.items.filter(function(item) {
+        return !item.done
+      })
+
+      //プレイノートを削除分を除いて再登録
+      CurrentGameData.PlayingKeyWords = [];
+      for (_memo in this.items) {
+        CurrentGameData.PlayingKeyWords.push(this.items[_memo].memo);
+      }
+
+    }
+
+    onlyDone(item) {
+      return item.done
+    }
+  </script>
+
+  <style>
+    form input {
+      font-size: calc(125% + 2vw);
+      padding: .4em;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+    }
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      list-style-type: none;
+      padding: .2em 0;
+    }
+
+    .completed {
+      text-decoration: line-through;
+    }
+
+    label {
+      cursor: pointer;
+    }
+  </style>
+</tfg-focus>
