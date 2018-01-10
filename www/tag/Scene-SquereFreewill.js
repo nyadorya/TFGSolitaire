@@ -128,7 +128,7 @@ phina.define('SquereFreewillScene', {
       self.button[self.selected].tweener
         .clear()
         .call(function(){
-          if (self.nextScene == void 0) {
+          if (self.nextScene == void 0 || self.nextScene =='') {
             self.doUniversalFeedback();
           } else {
             app.pushScene(self.nextScene);

@@ -75,6 +75,7 @@ i18n.ButtonEndOfSelect = '選択終了';
 i18n.ButtonEnd = '終了';
 i18n.ButtonRecomfirm = '再確認';
 i18n.ButtonMoveSquere = '移動します';
+i18n.ButtonKeepCookie = 'ユーザIDを保存する';
 
 //カード名
 i18n.NameCardAngel = 'エンジェルカード';

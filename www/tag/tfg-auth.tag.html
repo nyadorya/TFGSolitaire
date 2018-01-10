@@ -2,14 +2,15 @@
   <article>
   <div class="mainarea">
     Enter a Username:
-    <input id="login-username" type="text" class="text-edit" value="kazu"/><br>
+    <input id="login-username" type="text" class="text-edit" value={GetCookie('TFGUsername')}/><br>
     Enter a Password:
-    <input id="login-password" type="password" class="text-edit" value="jkjkjk"/><br>
+    <input id="login-password" type="password" class="text-edit" value={GetCookie('TFGPassword')}/><br>
 
     <button id="login-button" onclick={performLogIn} class="button">Log In</button>
     <button id="gosign-button" onclick={goSignUp} class="button">Go SignUp</button>
     <button id="anonymous-button" onclick={goAnonymous} class="button">{i18n.ButtonTestGameNoSave}</button>
   </div>
+  <input type="checkbox" onClick={setCookie} checked='{TFGSaveCookie}'>{i18n.ButtonKeepCookie}
   <p>{dispmsg}</p>
   <p>{dispCurrentLanguage}</p>
     <button id="lang_en" onclick={LangEN} class="selectLang">English</button>
@@ -21,6 +22,41 @@
     TfAp.SetLanguage(CurrentGameData.Language||'EN');
     this.dispmsg = 'Please choose your preferred language.';
     this.dispCurrentLanguage = i18n.CurrentLanguage;
+
+    GetCookie( name ) {
+        var result = null;
+
+        var cookieName = name + '=';
+        var allcookies = document.cookie;
+
+        var position = allcookies.indexOf( cookieName );
+        if( position != -1 )
+        {
+            var startIndex = position + cookieName.length;
+
+            var endIndex = allcookies.indexOf( ';', startIndex );
+            if( endIndex == -1 )
+            {
+                endIndex = allcookies.length;
+            }
+
+            result = decodeURIComponent(
+                allcookies.substring( startIndex, endIndex ) );
+        }
+
+        return result;
+    }
+
+    this.TFGSaveCookie = this.GetCookie('TFGSaveCookie');
+
+    setCookie() {
+      this.TFGSaveCookie = !this.TFGSaveCookie;
+      if (this.TFGSaveCookie == false) {
+        document.cookie = 'TFGSaveCookie=false; expires=;';
+      } else {
+        document.cookie = 'TFGSaveCookie=true; expires=Tue, 31-Dec-2037 00:00:00 GMT;';
+      }
+    }
 
     LangEN() {
       CurrentGameData.Language = 'EN';
@@ -48,6 +84,13 @@
       var _password = document.getElementById("login-password").value;
       var tmpdispmsg = '';
 
+      if (this.TFGSaveCookie == false) {
+        document.cookie = 'TFGUsername=; expires=Tue, 31-Aug-1971 00:00:00 GMT';
+        document.cookie = 'TFGPassword=; expires=Tue, 31-Aug-1971 00:00:00 GMT';
+      } else {
+        document.cookie = 'TFGUsername=' + _username + '; expires=Tue, 31-Dec-2037 00:00:00 GMT';
+        document.cookie = 'TFGPassword=' + _password + '; expires=Tue, 31-Dec-2037 00:00:00 GMT';
+      }
 
       var cognitoSP = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
 
@@ -63,7 +106,7 @@
 
       cognitoSP.adminInitiateAuth(params, function(err, data) {
         if (err) {
-          console.log(err, err.stack);
+//          console.log(err, err.stack);
           console.log(i18n.CertificationFailed);
         } else {
 //          console.log(data);       // successful response
