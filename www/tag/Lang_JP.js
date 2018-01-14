@@ -1050,7 +1050,7 @@ i18n.Lv4TokenAwareness = [
   { id: 70, message: 'attunement', meaning: '調和',},
   { id: 71, message: 'authority', meaning: '権限',},
   { id: 72, message: 'celebration', meaning: 'お祝い',},
-  { id: 73, message: 'becoming', meaning: '〜になる',},
+  { id: 73, message: 'becoming', meaning: '～になる',},
   { id: 74, message: 'being', meaning: 'であること',},
   { id: 75, message: 'brotherhood', meaning: '兄弟愛',},
   { id: 76, message: 'centering', meaning: 'センタリング',},

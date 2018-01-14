@@ -84,7 +84,10 @@ phina.define('MainBoardScene', {
     for (var i=-6,len=9; i<len; ++i) {
       var tmpSquareNumber = _squareNumber + i*_direct;
       while (tmpSquareNumber < 0) {
-        tmpSquareNumber = tmpSquareNumber + (tmpSquareNumber<0?Squares.length:0);
+        tmpSquareNumber = tmpSquareNumber + Squares.length;
+      }
+      while (tmpSquareNumber > (Squares.length-1)) {
+        tmpSquareNumber = tmpSquareNumber - Squares.length;
       }
 
       this.markSquare[tmpSquareNumber] = SquareMark({
@@ -430,13 +433,13 @@ phina.define('MainBoardScene', {
     for (var i=-2,len=9+e.numberDice; i<len; i++) {
 
       tmpSquareNumber = squareNumber + i*_direct;
-      tmpSquareNumber = tmpSquareNumber + (tmpSquareNumber<0?Squares.length:0);
-
-      if (tmpSquareNumber < 0) {
+      while (tmpSquareNumber < 0) {
         tmpSquareNumber = tmpSquareNumber + Squares.length;
-      } else if (tmpSquareNumber > (Squares.length-1)) {
+      }
+      while (tmpSquareNumber > (Squares.length-1)) {
         tmpSquareNumber = tmpSquareNumber - Squares.length;
       }
+
       self.markSquare[parseInt(tmpSquareNumber)].moveSquare(e);
     }
     var _squareNumber = (e.squareNumber + e.numberDice*_direct)%Squares.length;
