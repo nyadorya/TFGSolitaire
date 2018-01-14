@@ -85,7 +85,8 @@ phina.define('GameCloseOverScene', {
     });
     this.superInit(options);
 
-    app.backgroundColor = appBackGroundColor;
+    this.backgroundColor = appBackGroundColor;
+    this.cbname = options.cbname;
 
     //メッセージウインドウ
     var _msg = MessageWindow({
@@ -99,6 +100,7 @@ phina.define('GameCloseOverScene', {
 
     var self = this;
     _btnGO.on('push', function(e) {
+      self.app.flare(self.cbname);
       self.exit();
     });
   },

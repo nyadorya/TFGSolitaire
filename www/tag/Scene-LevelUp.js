@@ -44,8 +44,10 @@ phina.define('LevelUpSceneSequence' , {
 
     //先にレベルをアップして保存しないとレベルアップ処理途中でやめることができてしまう。
     var _Level = CurrentGameData.ScoreCardLevel;
-    var _log = i18n.LogLevelUp + ScoreCardNames[_Level] + i18n.From + ScoreCardNames[_Level+1];
-    TfAp.WriteGameLog(_log);
+    if (_Level < 3){
+      var _log = i18n.LogLevelUp + ScoreCardNames[_Level] + i18n.From + ScoreCardNames[_Level+1];
+      TfAp.WriteGameLog(_log);
+    }
     CurrentGameData.ScoreCardLevel = CurrentGameData.ScoreCardLevel + 1;
 
     //保存
@@ -111,13 +113,23 @@ phina.define('LevelUpMessageScene', {
     var _btnGO = this._selectButton({text:i18n.ButtonNext}).setPosition(320,500).addChildTo(this);
 
     var self = this;
+    var _cbname = TfAp.doneFlareName();
     _btnGO.on('push', function(e) {
       if (_Level > 3){
         //ゲーム終了へ
-        self.app.replaceScene('GameCloseOverScene');
+        self.app.replaceScene(GameCloseOverScene({cbname:_cbname}));
       } else {
         self.exit();
       }
+    });
+
+    app.on(_cbname, function(e) {
+      var _date = new Date();
+      CurrentGameData.CloseTime = _date.getTime();
+      CurrentGameData.Scene = 'MainBoard';
+      TfAp.WriteGameLog(i18n.LogGameEnd);
+      app.replaceScene(MainBoardScene());
+      TfAp.saveGameData();
     });
   },
 });
