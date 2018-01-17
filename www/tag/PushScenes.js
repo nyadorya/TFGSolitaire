@@ -2360,12 +2360,16 @@ phina.define('BackgroundRainbowScene', {
 
   init: function(options) {
     options = ({}).$safe(options, {
-      text : '(tap to next)'
+      text : '(tap to next)',
+      x : 320,
+      y : 480,
     });
 
     this.superInit(options);
     this.cbname = options.cbname||'';
     this.i = 1;
+    this.x = options.x;
+    this.y = options.y;
 
     var _lav = Label({text:options.text,x:320,y:400}).addChildTo(this);
 
@@ -2379,7 +2383,7 @@ phina.define('BackgroundRainbowScene', {
   update :function(){
     this.i = this.i + 1;
     if (this.i > 30) this.i = 1; 
-    this.grad = Canvas.createRadialGradient(320,480, 1, 320, 480, this.i*100);
+    this.grad = Canvas.createRadialGradient(this.x,this.y, 1, this.x, this.y, this.i*100);
     //赤、 オレンジ、 黄色、 緑、 水色、 青、 紫
     this.grad.addColorStop(1, 'red');
     this.grad.addColorStop(0.85, 'orange');

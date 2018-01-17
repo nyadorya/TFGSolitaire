@@ -23,7 +23,7 @@ TfAp.MainScenes = [
 //開発シーンのみ都度定義
   {
     label: 'TEST',
-    className: 'SelectDeckToScoreAngelScene',
+    className: 'LevelUpSceneSequence',
   },
 ]
 

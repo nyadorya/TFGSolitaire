@@ -14,11 +14,6 @@ phina.define('SquereMiracleSceneSequence' , {
           nextLabel: 'PartyPopper',
         },
         {
-          label: 'PartyPopper',
-          className: 'PartyPopperScene',
-          nextLabel: 'SquereMiracle',
-        },
-        {
           label: 'SquereMiracle',
           className: 'SquereMiracleScene',
           nextLabel: 'AmimateClearAllPain',

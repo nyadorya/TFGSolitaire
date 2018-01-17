@@ -11,8 +11,9 @@ phina.define('LevelUpSceneSequence' , {
     this.superInit({
       scenes: [
         {
-          label: 'PaperBall',
-          className: 'PaperBallScene',
+          label: 'BackgroundRainbow',
+          className: 'BackgroundRainbowScene',
+          arguments: {y:30},
           nextLabel: 'LevelUpMessage',
         },
         {
