@@ -7,6 +7,7 @@ TfAp.OverLayCancel = false;  //オーバレイ終了
 TfAp.SelectedOptId = -1; //SelectOptionScene(選択肢選択)の結果
 
 var isSaveGame = true; //ゲーム保存  //とりあえず=false
+TfAp.SavePoint = 1;
 
 //予約定義（グローバル禁止）
 //causeEvents：各カードを引いた後のイベントを定義（各カードのクラスごとに定義する。）
@@ -254,7 +255,6 @@ TfAp.loadGameData = function(paramUserName) {
 
     var _tmpData = [];
 
-
     var params = {
       ExpressionAttributeValues: {
        ":uname": {S: paramUserName},
@@ -262,7 +262,7 @@ TfAp.loadGameData = function(paramUserName) {
       },
       KeyConditionExpression: "UserName = :uname AND StartTime > :ust",
       ScanIndexForward : false,
-      Limit: 3,
+      Limit: TfAp.SavePoint, 
       TableName: 'TFGPlayData',
     };
 

@@ -104,12 +104,17 @@
         }
       };
 
+
+
+
+
+
       cognitoSP.adminInitiateAuth(params, function(err, data) {
         if (err) {
 //          console.log(err, err.stack);
           console.log(i18n.CertificationFailed);
         } else {
-//          console.log(data);       // successful response
+          //console.log(data);       // successful response
           CurrentGameData.UserName = _username;
           var date = new Date();
           CurrentGameData.StartTime = date.getTime();
@@ -118,6 +123,17 @@
           riot.compile(function() {
             riot.mount('app-main','selectload');
           })
+          cognitoSP.getUser({AccessToken:data.AuthenticationResult.AccessToken},function(err,data){
+            if(err) console.log(err,err.stack);
+            else {
+              data.UserAttributes.forEach(function(val,id,arary) {
+                if (val.Name == 'custom:SavePoint') {
+                  TfAp.SavePoint = val.Value;
+                }
+              });
+              
+            }
+          });
         }
       });
     }
