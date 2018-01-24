@@ -12,7 +12,7 @@ TfAp.MainScenes = [
     label: 'load',
     className: 'LoadingScene',
     nextLabel: 'MainBoard', //ゲーム開始も
-//    nextLabel: 'TEST', //当面開発するシーンを記載
+//  nextLabel: 'TEST', //当面開発するシーンを記載
 
     arguments: {assets: TfAp.ASSETS,},
   },
@@ -23,7 +23,8 @@ TfAp.MainScenes = [
 //開発シーンのみ都度定義
   {
     label: 'TEST',
-    className: 'LevelUpSceneSequence',
+    className: 'MoveSquereSceneSequence',
+    arguments: {conditions:'Service'},
   },
 ]
 

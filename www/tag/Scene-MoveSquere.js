@@ -75,6 +75,13 @@ phina.define('MoveSquereScene', {
 
     this.StartMessage.ButtonA.on('push', function(e) {
       var _nextSteps = CurrentGameData.PathSteps + self.pathMap.selectedSquereAddSteps;
+      while (_nextSteps < 0) {
+       _nextSteps =_nextSteps + Squares.length;
+      }
+      while (_nextSteps > (Squares.length-1)) {
+       _nextSteps =_nextSteps - Squares.length;
+      }
+
       _msg = i18n.ConfirmMoveSquere;
       _msg = _msg.replace(/α/g,Squares[_nextSteps%Squares.length].mark);
 
@@ -87,6 +94,12 @@ phina.define('MoveSquereScene', {
 
     this.OKButton.on('push', function(e) {
       var _nextSteps = CurrentGameData.PathSteps + self.pathMap.selectedSquereAddSteps;
+      while (_nextSteps < 0) {
+       _nextSteps =_nextSteps + Squares.length;
+      }
+      while (_nextSteps > (Squares.length-1)) {
+       _nextSteps =_nextSteps - Squares.length;
+      }
       switch (options.conditions) {
         case 'ALL':
           if (Squares[_nextSteps%Squares.length].mark == 'Transformation') {

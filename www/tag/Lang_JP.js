@@ -184,9 +184,9 @@ i18n.SelectedInsightGetTokenMessage = '\n\n気づきのトークン#Awareness#�
 i18n.SelectedInsightLostTokenMessage = '\n\n気づきのトークン#Awareness#枚失います。';
 i18n.SelectedSetbackLog = 'セットバック：α（β）がγから選ばれました。';
 i18n.SelectedSetbackMessage = 'セットバックカードがγから選ばれました。\nβ\n（α）\nというセットバック（停滞）です。';
-i18n.SelectedSetbackGetTokenMessage = '\n\nなみだのトークン#Pain#枚与えられました。';
-i18n.ChanceClearPainMessage = '\n\nなみだのトークン#Pain#枚解放できます。';
-i18n.SelectedSetbackButNoPainMessage = '\n\nなみだのトークン#Pain#枚与えられるのですが、今回は与えられません。';
+i18n.SelectedSetbackGetTokenMessage = '\n\nいたみのトークン#Pain#枚与えられました。';
+i18n.ChanceClearPainMessage = '\n\nいたみのトークン#Pain#枚解放できます。';
+i18n.SelectedSetbackButNoPainMessage = '\n\nいたみのトークン#Pain#枚与えられるのですが、今回は与えられません。';
 
 i18n.SelectTokenAndPushButtonMessage = 'トークンをα枚選択エリアに移動し、下のボタンを押下してください。';
 i18n.SelectLostTokenAndPushButtonMessage = 'トークンをα枚選択し、下のボタンを押下してください。';
@@ -206,7 +206,7 @@ i18n.ScoreCardAreaMessageTransformation = '《気づきを他の人とシェア�
 
 i18n.FailGambleDiceMessage = '痛みを抱えたまま無理に歩みを進めた';
 i18n.FailGambleFlashMessage = 'ひらめきが失敗に終わった';
-i18n.PutDepressionMessage = 'なみだのスクエアに到着した';
+i18n.PutDepressionMessage = '落ち込みのスクエアに到着した';
 i18n.PutSetbackMessage = 'セットバックカードを引いた';
 
 //MainScene
@@ -239,9 +239,6 @@ i18n.NoKeywordAndTryAgain = 'キーワードが含まれてません。もう一
 i18n.ClearedPain = '抱えていた痛みは開放されました\nあなたが解放した過去の痛みはスコアカードのトランスフォーメーションエリアに保存されます。';
 i18n.NoPainForClear = '抱えた痛みはありませんでした。';
 i18n.AllPainCleard = 'これまで抱えた痛みはすべて解放されました。'
-
-//つかってない
-i18n.SelectedCardAfterMessage = '\n\nこのタイミングで現れたカードについて何を感じたか、感想などをノートに残しましょう。'
 
 //GameCloseScene
 i18n.ConfirmGameClose = 'ゲーム終了しますか。\n（ここでOKすると戻れません。）';
@@ -312,11 +309,11 @@ i18n.SquereDepressionEndMessage = 'なぜここでスローダウンすること
 i18n.SquereFlash = 'ひらめき';
 i18n.SquereFlashSelectAction = '以下のいずれかを直感で選びます。\nその後、フラッシュコインを投げます。';
 i18n.SquereFlashOpenFlash = 'カードの指示に従います。';
-i18n.SquereFlashOpenPain = 'カードは引けません。\nなみだのカードを１枚もらってこのスクエアは終了です。';
+i18n.SquereFlashOpenPain = 'カードは引けません。\nいたみのカードを１枚もらってこのスクエアは終了です。';
 i18n.ThrowCoin = 'コインを回転させます。(Tap Coin)';
 i18n.StopCoin = 'コインを止めます。(Tap Coin)';
 i18n.StoppingCoin = 'さて、どちらがでるでしょうか…';
-i18n.SquereFlashFailEnd = '残念ながらカードは引けません。\nなみだのカードをもらってこのスクエアは終了です。\n\n今回のひらめきが裏目に出たことについて感じたことや思いついたことをメモしてみましょう。';
+i18n.SquereFlashFailEnd = '残念ながらカードは引けません。\nいたみのカードをもらってこのスクエアは終了です。\n\n今回のひらめきが裏目に出たことについて感じたことや思いついたことをメモしてみましょう。';
 i18n.SquereFlashCoinFlash = 'フラッシュ！成功です！';
 i18n.SquereFlashCoinPain = '残念、失敗です…';
 
@@ -332,7 +329,7 @@ i18n.SquereInsightEndMessage = 'これにてインサイトスクエアは終了
 
 //SquereMiracle
 i18n.SquereMiracle = 'ミラクル';
-i18n.SquereMiracleStartMessage = 'ミラクルスクエアです！\nこのタイミングで奇跡が起きたことを喜びましょう。そして、なぜこのタイミングで奇跡が起きたのか、あなたのプレイフォーカスや守護天使との関係から考えてみましょう…\n\nここでは以下のことが行われます。\n１．なみだ全開放\n２．以下のいずれかを獲得\n・天使カード１枚\n・気づきのトークン６枚\n・サービストークン１枚\n\n以上です。';
+i18n.SquereMiracleStartMessage = 'ミラクルスクエアです！\nこのタイミングで奇跡が起きたことを喜びましょう。そして、なぜこのタイミングで奇跡が起きたのか、あなたのプレイフォーカスや守護天使との関係から考えてみましょう…\n\nここでは以下のことが行われます。\n１．いたみ全開放\n２．以下のいずれかを獲得\n・天使カード１枚\n・気づきのトークン６枚\n・サービストークン１枚\n\n以上です。';
 i18n.SquereMiracleClearAllPainReason = 'ミラクルスクエア到達';
 i18n.SquereMiracleSelectMessage = '抱えていた痛みは開放されました。\n\n次に以下のいずれかを獲得できます。選択してください。';
 i18n.SquereMiracleSelectAngel = 'エンジェルカード１枚';
@@ -547,7 +544,7 @@ i18n.CardInsights = [
   { id: 92, Active: false, message: 'Forgiveness dissolves pain.', meaning: '容赦は痛みを和らげます。', Target: 'all', TokenAwareness: 4, TokenPain: -9, TokenService: 0, CardAngel: 0, CardInsight: 0, CardSetback: 0, Level: 0, Move: '', },
   { id: 93, Active: false, message: 'I forgive everyone.I forgive myself.I forgive all past experience.I am free!', meaning: '私は皆を許します。私は自分を許します。私は過去の経験を許します。私は自由です！', Target: 'group ', TokenAwareness: 3, TokenPain: -9, TokenService: 0, CardAngel: 0, CardInsight: 0, CardSetback: 0, Level: 0, Move: '', },
   { id: 94, Active: false, message: 'An opportunity to give truthful feedback now to one other player who is them.', meaning: '他のプレイヤーに気づきのトークンを渡すチャンスです。誰かを指定して渡してください。そして本人も受け取ります。', Target: 'both', TokenAwareness: 3, TokenPain: 0, TokenService: 0, CardAngel: 0, CardInsight: 0, CardSetback: 0, Level: 0, Move: '', },
-  { id: 95, Active: false, message: 'A little blessing in disguise!Take a Setback from your Unconscious or Life Setback deck now.Do NOT take pain.Share any insights.', meaning: '隠れた小さな祝福です。セットバックカードを無意識の封筒かデッキから引き、メッセージに従います。ただし、なみだは無しです。気が付いたことをシェアします。', Target: 'roller', TokenAwareness: 1, TokenPain: 0, TokenService: 0, CardAngel: 0, CardInsight: 0, CardSetback: 1, Level: 0, Move: '', },
+  { id: 95, Active: false, message: 'A little blessing in disguise!Take a Setback from your Unconscious or Life Setback deck now.Do NOT take pain.Share any insights.', meaning: '隠れた小さな祝福です。セットバックカードを無意識の封筒かデッキから引き、メッセージに従います。ただし、痛みは与えられません。気が付いたことをシェアします。', Target: 'roller', TokenAwareness: 1, TokenPain: 0, TokenService: 0, CardAngel: 0, CardInsight: 0, CardSetback: 1, Level: 0, Move: '', },
   { id: 96, Active: false, message: 'Revelation!Take 3 Insights from your Unconscious envelope or Life Insight deck.', meaning: '啓示があります。インサイトカードを３枚無意識の封筒かデッキからとりましょう。', Target: 'group', TokenAwareness: 3, TokenPain: 0, TokenService: 0, CardAngel: 0, CardInsight: 3, CardSetback: 0, Level: 0, Move: '', },
   { id: 97, Active: false, message: 'An opportunity to give truthful feedback now to one other player who is born.', meaning: '生まれた他のプレイヤーに正直なフィードバックを与える機会です。', Target: 'all', TokenAwareness: 3, TokenPain: 0, TokenService: 0, CardAngel: 0, CardInsight: 0, CardSetback: 0, Level: 0, Move: '', },
   { id: 98, Active: false, message: 'Leap to any Miracle square now and complete instructions for it on the Life Square card.', meaning: '任意のミラクルスクエアに移動してください。移動先のカードの指示に従ってください。', Target: 'roller', TokenAwareness: 0, TokenPain: 0, TokenService: 0, CardAngel: 0, CardInsight: 0, CardSetback: 0, Level: 0, Move: 'miracle', },
@@ -632,7 +629,7 @@ i18n.CardSetbacks = [
   { id: 74, 	Active: true, 	message: 'You are setback by your need for approval on your present level.', 	meaning: 'あなたは同意の必要性により現在のレベルに停滞しています。', 	Target: 'roller', 	TokenAwareness: 0, 	TokenPain: 2, 	TokenService: 0, 	CardAngel: 0, 	CardInsight: 0, 	CardSetback: 0, 	Level: 0, 	Move: '', },
   { id: 75, 	Active: false, 	message: 'DROP BACK ONE LEVEL NOW.Release all Awareness Tokens on your present and previous level and start over again.Take any current Setbacks and Pains back with you.', 	meaning: '１レベル後退。トークンをすべて手放します。セットバックと抱えた痛みはそのままです。', 	Target: 'roller', 	TokenAwareness: 0, 	TokenPain: 0, 	TokenService: 0, 	CardAngel: 0, 	CardInsight: 0, 	CardSetback: 0, 	Level: -1, 	Move: '', },
   { id: 76, 	Active: false, 	message: 'Suprise! Suprise! Take an Insight from your Unconscious or the Life Insight deck now and double the Awareness shown.', 	meaning: 'びっくり！インサイトカードを無意識の封筒かデッキからとります。気づきを増やしてください。', 	Target: 'roller', 	TokenAwareness: 0, 	TokenPain: 0, 	TokenService: 0, 	CardAngel: 0, 	CardInsight: 1, 	CardSetback: 0, 	Level: 0, 	Move: '', },
-  { id: 77, 	Active: false, 	message: 'A world crisis moves all players onto their closet Depression square now.Follow instructions on Depression Life Square card now.', 	meaning: '世界の危機です。全員なみだのエリアへ移動します。カードの指示に従います。', 	Target: 'roller', 	TokenAwareness: 0, 	TokenPain: 0, 	TokenService: 0, 	CardAngel: 0, 	CardInsight: 0, 	CardSetback: 0, 	Level: 0, 	Move: 'Depression', },
+  { id: 77, 	Active: false, 	message: 'A world crisis moves all players onto their closet Depression square now.Follow instructions on Depression Life Square card now.', 	meaning: '世界の危機です。全員落ち込みのエリアへ移動します。カードの指示に従います。', 	Target: 'roller', 	TokenAwareness: 0, 	TokenPain: 0, 	TokenService: 0, 	CardAngel: 0, 	CardInsight: 0, 	CardSetback: 0, 	Level: 0, 	Move: 'Depression', },
   { id: 78, 	Active: false, 	message: 'You\'d like to trust others but your old fear of being tricked and made a fool of overrides your sisterly/brotherly intentions.', 	meaning: 'あなたは他者を信用したいと思っていますが、あなたの昔の恐怖と欺かれていることはあなたの姉妹/兄弟の意図を覆してしまいます。', 	Target: 'group', 	TokenAwareness: 0, 	TokenPain: 2, 	TokenService: 0, 	CardAngel: 0, 	CardInsight: 0, 	CardSetback: 0, 	Level: 0, 	Move: '', },
   { id: 79, 	Active: false, 	message: 'Looking for the worst in people? Expecting the worst situations? No wonder you live in a hostile and painful world.', 	meaning: '人々の中で最悪をお探しですか？ 最悪の状況を期待していますか？ あなたが敵対的で苦しい世界に住んでいるのも不思議ではありません。', 	Target: 'group', 	TokenAwareness: 0, 	TokenPain: 2, 	TokenService: 0, 	CardAngel: 0, 	CardInsight: 0, 	CardSetback: 0, 	Level: 0, 	Move: '', },
   { id: 80, 	Active: false, 	message: 'You are setback by your anger on your present level.', 	meaning: 'あなたは怒りにより現在のレベルに停滞しています。', 	Target: 'group', 	TokenAwareness: 0, 	TokenPain: 2, 	TokenService: 0, 	CardAngel: 0, 	CardInsight: 0, 	CardSetback: 0, 	Level: 0, 	Move: '', },
