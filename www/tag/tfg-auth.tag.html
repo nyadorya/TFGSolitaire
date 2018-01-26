@@ -19,9 +19,6 @@
 
   <script>
 
-    TfAp.SetLanguage(CurrentGameData.Language||'EN');
-    this.dispmsg = 'Please choose your preferred language.';
-    this.dispCurrentLanguage = i18n.CurrentLanguage;
 
     GetCookie( name ) {
         var result = null;
@@ -47,6 +44,9 @@
         return result;
     }
 
+    TfAp.SetLanguage(this.GetCookie('TFGLanguage')||'EN');
+    this.dispmsg = 'Please choose your preferred language.';
+    this.dispCurrentLanguage = i18n.CurrentLanguage;
     this.TFGSaveCookie = this.GetCookie('TFGSaveCookie');
 
     setCookie() {
@@ -82,14 +82,17 @@
       // get the username/password combination from the UI
       var _username = document.getElementById("login-username").value;
       var _password = document.getElementById("login-password").value;
+      var _language = CurrentGameData.Language;
       var tmpdispmsg = '';
 
       if (this.TFGSaveCookie == false) {
         document.cookie = 'TFGUsername=; expires=Tue, 31-Aug-1971 00:00:00 GMT';
         document.cookie = 'TFGPassword=; expires=Tue, 31-Aug-1971 00:00:00 GMT';
+        document.cookie = 'TFGLanguage=; expires=Tue, 31-Aug-1971 00:00:00 GMT';
       } else {
         document.cookie = 'TFGUsername=' + _username + '; expires=Tue, 31-Dec-2037 00:00:00 GMT';
         document.cookie = 'TFGPassword=' + _password + '; expires=Tue, 31-Dec-2037 00:00:00 GMT';
+        document.cookie = 'TFGLanguage=' + _language + '; expires=Tue, 31-Dec-2037 00:00:00 GMT';
       }
 
       var cognitoSP = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});

@@ -244,7 +244,7 @@ i18n.AllPainCleard = 'これまで抱えた痛みはすべて解放されまし�
 i18n.ConfirmGameClose = 'ゲーム終了しますか。\n（ここでOKすると戻れません。）';
 i18n.StartGameClose = 'おつかれさまでした。\nゲームの最後に無意識の封筒を確認し、ゲーム後の気づきを確認して終了とします。';
 i18n.GameEnd = 'これにてゲーム終了です。\nあとからログをみてゲームを振り返ってみましょう。\n\n《今回のゲームがあなたの人生に役立つことを守護天使は望んでいます。》';
-i18n.RelatedToThisPlayFocus = '（β）《このカードは今回のプレイフォーカスと潜在的に関係していたようです。》'
+i18n.RelatedToThisPlayFocus = '（α）《このカードは今回のプレイフォーカスと潜在的に関係していたようです。》'
 
 //GameInitScene
 i18n.LeaveHeavenlyIntentionToFlashCoinTheDirection = '進む方向を決めました。天の意思をFlashCoinに委ねます。\n自分の選んだ道が正しいことを信じて、下のコインをタッチしてください。タッチすると回転が始まります。\nもう一度タッチすると止まりますので、その結果を見守りましょう。';
@@ -1031,7 +1031,7 @@ i18n.Lv4TokenAwareness = [
   { id: 54, message: 'fellowship', meaning: 'フェローシップ',},
   { id: 55, message: 'evolution', meaning: '進化',},
   { id: 56, message: 'guidance', meaning: 'ガイダンス',},
-  { id: 57, message: 'goodwill', meaning: 'のれん',},
+  { id: 57, message: 'goodwill', meaning: '善意',},
   { id: 58, message: 'grace', meaning: '猶予',},
   { id: 59, message: 'great dreams', meaning: '大きな夢',},
   { id: 60, message: 'harmlessness', meaning: '無害',},

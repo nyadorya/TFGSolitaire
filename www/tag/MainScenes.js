@@ -322,7 +322,7 @@ phina.define('MainBoardScene', {
       case 'Setback':
         _objCard = TfAp.MasterDecks(pain.CardType);
         _ret = _ret + i18n.Pain +'：' + i18n.PutSetbackMessage + '\n' + 
-                i18n.Detail + '：\n' + _objCard[pain.CardId].meaning;
+                i18n.Detail + '：\n' + ((CurrentGameData.Language=='EN')?_objCard[pain.CardId].message:_objCard[pain.CardId].meaning);
         break;
       case 'Depression':
         _ret = _ret + i18n.Pain + '：' +i18n. PutDepressionMessage;
@@ -522,14 +522,14 @@ phina.define('ScoreCardScene', {
       _buttonScoreCards[index] = TFGMiniButton({text:val,x:90+150*index,y:75,width:130,fill:ScoreCardColors[index],alpha:_alpha}).addChildTo(self);
 
       _buttonScoreCards[index].on('push', function() {
-//とりあえず開発中は未到達レベルのスコアカードを表示可にしておく
-//        if (CurrentGameData.ScoreCardLevel<index) return;
+        if (CurrentGameData.ScoreCardLevel<index) return;
         app.replaceScene(ScoreCardScene({level:index}));
       });
     });
 
     //メインの表示処理
-    this.display(options.level);
+    var _lv = options.level>3?3:options.level
+    this.display(_lv);
 
   },
   display: function(level) {
@@ -656,7 +656,7 @@ phina.define('ScoreCardScene', {
           var _scoreCardAreaMessageSetback = i18n.ScoreCardAreaMessageSetback;
           _scoreCardAreaMessageSetback = _scoreCardAreaMessageSetback.replace(/α/g,_messageGuardianAngel);
           this.AreaMessage.texts = [SetbackCard({id:this._displayMsgId}).getMessage() + '\n' +
-                                    SetbackCard({id:this._displayMsgId}).getMeaning() + '\n' +
+                                    ((CurrentGameData.Language=='EN')?'':SetbackCard({id:this._displayMsgId}).getMeaning()) + '\n' +
                                     _scoreCardAreaMessageSetback];
         } else if (e.cardtype=='Pain') {
           var _pain = this.Pain[e.id];
@@ -665,7 +665,7 @@ phina.define('ScoreCardScene', {
           switch (_pain.PutPainScene) {
             case 'Setback':
               _objCard = TfAp.MasterDecks(_pain.CardType);
-              _painmessage = _painmessage + _objCard[_pain.CardId].meaning;
+              _painmessage = _painmessage + ((CurrentGameData.Language=='EN')?_objCard[_pain.CardId].message:_objCard[_pain.CardId].meaning);
               break;
             case 'Dice':
               _painmessage = _painmessage + FailGambleDiceMessage;
@@ -680,13 +680,14 @@ phina.define('ScoreCardScene', {
           var _scoreCardAreaMessageAngel = i18n.ScoreCardAreaMessageAngel;;
           _scoreCardAreaMessageAngel = _scoreCardAreaMessageAngel.replace(/α/g,_getMessage);
           this.AreaMessage.texts = [_getMessage + '\n' +
-                                    AngelCard({id:this._displayMsgId}).getMeaning() + '\n' +
+                                    ((CurrentGameData.Language=='EN')?'':AngelCard({id:this._displayMsgId}).getMeaning()) + '\n' +
                                     _scoreCardAreaMessageAngel];
         } else if (e.cardtype=='Awareness') {
+          var _getMessage = TokenAwareness({id:this._displayMsgId,level:level,}).getMessage();
           var _getMeaning = TokenAwareness({id:this._displayMsgId,level:level,}).getMeaning();
           var _scoreCardAreaMessageAwareness = i18n.ScoreCardAreaMessageAwareness;
-          _scoreCardAreaMessageAwareness = _scoreCardAreaMessageAwareness.replace(/α/g,_getMeaning);
-          this.AreaMessage.texts = [TokenAwareness({id:this._displayMsgId,level:level,}).getMessage() + '\n' +
+          _scoreCardAreaMessageAwareness = _scoreCardAreaMessageAwareness.replace(/α/g,((CurrentGameData.Language=='EN')?_getMessage:_getMeaning));
+          this.AreaMessage.texts = [_getMessage + '\n' +
                                     _getMeaning + '\n' +
                                     _scoreCardAreaMessageAwareness];
         }

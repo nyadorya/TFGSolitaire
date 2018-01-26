@@ -263,7 +263,7 @@ phina.define('LevelUpAwarenessTokenScene', {
           //選択されたカード
           self._Token[i].addChildTo(SelectObjects);
           _keywords = _keywords + (_keywords==''?'':',');
-          _keywords = _keywords + _CurrentLevelMaster[self._Token[i].id].meaning;
+          _keywords = _keywords + ((CurrentGameData.Language=='EN')?_CurrentLevelMaster[self._Token[i].id].message:_CurrentLevelMaster[self._Token[i].id].meaning);
         } else {
           self._Token[i].addChildTo(nonSelectObjects);
         }
@@ -422,7 +422,7 @@ phina.define('LevelUpAngelCardScene', {
           //選択されたカード
           self._Angel[i].addChildTo(SelectObjects);
           _keywords = _keywords + (_keywords==''?'':',');
-          _keywords = _keywords + i18n.CardAngels[self._Angel[i].id].meaning;
+          _keywords = _keywords + ((CurrentGameData.Language=='EN')?i18n.CardAngels[self._Angel[i].id].message:i18n.CardAngels[self._Angel[i].id].meaning;
         } else {
           self._Angel[i].addChildTo(nonSelectObjects);
         }

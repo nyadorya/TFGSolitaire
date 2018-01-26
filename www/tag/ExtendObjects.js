@@ -400,7 +400,7 @@ phina.define('TFGCard', {
     return this.Master[this.id].message;
   },
   getMeaning : function() {
-    return this.Master[this.id].meaning;
+    return (CurrentGameData.Language=='EN')?'':this.Master[this.id].meaning;
   },
   getTarget : function() {
     var _ret = this.Master[this.id].Target;
@@ -576,7 +576,7 @@ phina.define('TokenAwareness', {
     return (this.id > -1)?(this.Master[this.id].message):'Awareness';
   },
   getMeaning : function() {
-    return (this.id > -1)?(this.Master[this.id].meaning):'';
+    return (this.id > -1)?((CurrentGameData.Language=='EN')?'':this.Master[this.id].meaning):'';
   },
   displayCard : function(options) {
     if (options.isFace == true && options.id > -1) {

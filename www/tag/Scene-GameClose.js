@@ -141,7 +141,7 @@ phina.define('GameCloseScene', {
       this._deckCard[i].on('pointend', function(e) {
         this.openFace(e);
         var _relatedToThisPlayFocus = i18n.RelatedToThisPlayFocus;
-        _relatedToThisPlayFocus = _relatedToThisPlayFocus.replace(/β/g,this.getMessage());
+        _relatedToThisPlayFocus = _relatedToThisPlayFocus.replace(/α/g,this.getMessage());
 
         var _tmp = this.getMeaning()+_relatedToThisPlayFocus;
         _msg.resetText({texts:[_tmp]});

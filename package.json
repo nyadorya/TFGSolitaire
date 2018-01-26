@@ -1,6 +1,6 @@
 {
   "name": "jp.echopeace.tfgsolitaire",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "displayName": "TFGSolitaire",
   "cordova": {
     "platforms": [

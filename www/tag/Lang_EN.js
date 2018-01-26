@@ -15,7 +15,7 @@ i18n.Direction = 'Direction';
 
 i18n.Envelope = 'Unconcious Envelope';
 
-i18n.From = 'From';
+i18n.From = ' From';
 i18n.Focus = 'Focus';
 
 i18n.HoldPain = 'HoldPain';
@@ -42,7 +42,7 @@ i18n.Reason = 'Reason';
 i18n.Right = 'Right';
 
 i18n.SaveTime = 'SaveTime';
-i18n.SelectTokenAwareness = 'SelectTokenAwareness';
+i18n.SelectTokenAwareness = 'SelectToken';
 i18n.SelectArea = 'SelectArea';
 i18n.Squere = 'Squere';
 i18n.StartTime = 'StartTime';
@@ -52,14 +52,14 @@ i18n.To = 'To';
 i18n.UnitOfCard = 'Card';
 
 //慣用句
-i18n.All = 'All';
+i18n.All = 'All ';
 i18n.StopSquere = 'StopSquere';
 i18n.WantServe = 'Serve for';
-i18n.GetToken = 'You Get tokens';
-i18n.OnLevel = 'on this Level';
+i18n.GetToken = ' You Get tokens';
+i18n.OnLevel = ' on this Level';
 i18n.GivenToken = 'You give the following tokens at the level. Target[';
 i18n.LoadLastGames = 'Previous games';
-i18n.Within85characters = 'Within 85 characters including \'α\'';
+i18n.Within85characters = 'Within85letters including \'α\'';
 i18n.YouSays = 'You says.';
 i18n.GetServiceToken = 'Get ServiceToken';
 i18n.AreYouReady = 'Are you Ready?';
@@ -184,9 +184,9 @@ i18n.SelectedInsightGetTokenMessage = '\n\n Aware tokens #Awareness# pieces earn
 i18n.SelectedInsightLostTokenMessage = '\n\nTo aware tokens #Awareness# You lose.';
 i18n.SelectedSetbackLog = 'Setback: αwas chosen from γ. ';
 i18n.SelectedSetbackMessage = 'Set back card was selected from γ.\n α\n It is set back (stagnation). ';
-i18n.SelectedSetbackGetTokenMessage = '\n\nYou gave Pain Token #Pain# pieces. ';
+i18n.SelectedSetbackGetTokenMessage = '\n\nYou gave #Pain# Pain Tokens. ';
 i18n.ChanceClearPainMessage = '\n\nYou can release Pain Token #Pain# pieces. ';
-i18n.SelectedSetbackButNoPainMessage = '\n\nYou can give Pain Token #Pain# pieces, but this time it will not be given.';
+i18n.SelectedSetbackButNoPainMessage = '\n\nYou give #Pain# Pain Tokens, but this time it will not be given.';
 
 i18n.SelectTokenAndPushButtonMessage = 'Move the token to the α selection area and press the button below.';
 i18n.SelectLostTokenAndPushButtonMessage = 'Please select α token and press the button below.';
@@ -232,7 +232,7 @@ i18n.GoToBoxSelectedToken = 'The selected token has returned to Box.';
 i18n.SelectedPainContents = 'Contents of selected pain';
 i18n.CanYouClearPain = 'Is it possible to solve this pain with the selected awareness?';
 i18n.CannotYouClearPainBecauseNoToken = 'It can not be resolved because there is no token yet.\nPlease press the return button and return.';
-i18n.HowDoYouRespondToPain = 'How do you respond to the pain (γ) you used by exploiting the token\'α\' of awareness?';
+i18n.HowDoYouRespondToPain = 'How do you respond to the pain (γ) you used by exploiting the token \'α\' of awareness?\n(Within 85 letters includes \'α\')';
 i18n.GatherWordOnceMore = 'Let\'s gather this word once more.\n For pain (α),';
 i18n.NoKeywordAndTryAgain = 'The keyword is not included. Please try again.';
 i18n.ClearedPain = 'Pain that we were holding was released\n Past pain you released will be saved in the scorecards transformation area.';
@@ -241,9 +241,9 @@ i18n.AllPainCleard = 'All the pain that you had was released.';
 
 //GameCloseScene
 i18n.ConfirmGameClose = 'Do you want to end the game?\n (You can not go back if you do OK here.) ';
-i18n.StartGameClose = 'Congratulations!\n Confirm the unconscious envelope at the end of the game, confirm the awareness after the game and end it.';
+i18n.StartGameClose = 'Your life is over.\nConfirm the unconscious envelope at the end of the game, confirm the awareness after the game and end it.';
 i18n.GameEnd = 'This is the end of the game.\n Let\'s look back at the logs and look back on the game.\n\n 《Guardian angel wants this game to be useful in your life. 》';
-i18n.RelatedToThisPlayFocus = '(β) 《It seems that this card was potentially related to this play focus. 》';
+i18n.RelatedToThisPlayFocus = '(α) 《It seems that this card was potentially related to this play focus. 》';
 
 //GameInitScene
 i18n.LeaveHeavenlyIntentionToFlashCoinTheDirection = 'We decided the direction of travel. Leave heavenly intention to FlashCoin.\n Please believe that the way you chose is right and touch the coins below. Touch to start rotation.\nTouch again to stop, so let\'s watch over the results. ';
@@ -274,7 +274,7 @@ i18n.SelectExchangeNoServiceMessage = 'There are no service tokens that can be c
 i18n.ConfirmExchangeServiceMessage = 'Can You transfer the service token α to the next level?';
 i18n.ConfirmNoExchangeServiceMessage =' Leave all service tokens to the current level. is this good. ';
 i18n.ExchangedService = 'The service token α has been advanced to the next level. ';
-i18n.GoNextLevelAndContinue = ', go to the next level! Let\'s continue the game. ';
+i18n.GoNextLevelAndContinue = 'Go to the next level! Let\'s continue the game. ';
 
 //MoveSquere
 i18n.SelectSquereMessage = 'You can move to any α square.\nPlease choose.\n\nSelect and follow the directions of the destination square. ';
@@ -333,7 +333,7 @@ i18n.SquereMiracle = 'Miracle';
 i18n.SquereMiracleStartMessage = 'Miracle square!\n Let\'s rejoice that a miracle happened at this timing. And let\'s think about why miracles happened at this timing, from the relationship with your playing focus and guardian angel ...\n\nThe following things are done here.\n 1. Namida full opening\n 2. Earn one of the following\n - one angel card\n - six aware tokens\n - one service token\n\n or more. ';
 i18n.SquereMiracleClearAllPainReason = 'on Miracle square';
 i18n.SquereMiracleSelectMessage = 'All pains were released.\n\n Then you can earn one of the following: Please select. ';
-i18n.SquereMiracleSelectAngel = 'Angel card 1 piece';
+i18n.SquereMiracleSelectAngel = 'one Angel card';
 i18n.SquereMiracleSelectTokenAwareness = '6 tokens of awareness';
 i18n.SquereMiracleSelectService = 'one service token';
 i18n.SquereMiracleEndMessage = 'This is the end of Miracle Square.\n\n Is there a relationship between arriving at Miracle Square on resolved pain? Let\'s leave it in the play note if it is.\n\nIf there are other tokens etc. obtained from this square, is not it possible to level up?\n Level up If possible, let\'s go up to the next level! ';
@@ -365,11 +365,11 @@ i18n.SquereTransformationEndMessage = 'Why did you reach the square of transform
 //SelectAction
 i18n.AngelFromEnvelope = 'Take one angel card from Unconscious envelope';
 i18n.InsightFromEnvelope = 'Take one Insight card from Unconscious envelope';
-i18n.SetbackFromEnvelopeWithPain = 'Take one Setback card from Unconscious envelope (with pain)';
+i18n.SetbackFromEnvelopeWithPain = 'Take one Setback card from Unconscious envelope';
 i18n.SetbackFromEnvelopeNoPain = 'Take one setback card from Unconscious envelope (no pain)';
 i18n.AngelFromDeck = 'Take one Angel card from deck';
 i18n.InsightFromDeck = 'Take one Insight card from the deck';
-i18n.SetbackFromDeckWithPain = 'Take one Setback card from the deck (with pain)';
+i18n.SetbackFromDeckWithPain = 'Take one Setback card from the deck';
 i18n.SetbackFromDeckNoPain = 'Take one Setback card from the deck (no pain)';
 i18n.NoAction = 'Do nothing';
 

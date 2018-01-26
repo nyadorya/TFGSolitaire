@@ -592,7 +592,7 @@ phina.define('SelectTokenBoxToScoreScene', {
       self._selectedToken.forEach(function(val,_id,array) {
         if (_id>0) {_tempLogging = _tempLogging + ','};
         _tempLogging = _tempLogging + val.getMessage();
-        _tempLogging = _tempLogging + '（' +val.getMeaning() + '）';
+        if (CurrentGameData.Language!='EN') {_tempLogging = _tempLogging + '（' +val.getMeaning() + '）';};
       });
       
       CurrentGameData.Scene = 'MainBoard';
@@ -1752,8 +1752,8 @@ phina.define('ClaerPainScene', {
     switch (pain.PutPainScene) {
       case 'Setback':
         _objCard = TfAp.MasterDecks(pain.CardType);
-        _ret = _ret + '\n' + i18n.Detail + '：\n' + _objCard[pain.CardId].meaning;
-        _painmessage = _painmessage + ':' + _objCard[pain.CardId].meaning;
+        _ret = _ret + '\n' + i18n.Detail + '：\n' + (CurrentGameData.Language=='EN')?_objCard[pain.CardId].message:_objCard[pain.CardId].meaning;
+        _painmessage = _painmessage + ':' + (CurrentGameData.Language=='EN')?_objCard[pain.CardId].message:_objCard[pain.CardId].meaning;
         break;
       case 'Depression':
         _ret = _ret + i18n.Pain + '：' + i18n.PutDepressionMessage;
@@ -1857,7 +1857,7 @@ phina.define('ClaerPainScene', {
           if (self._Token[i].isSelected == true) {
             //選択されたカード
             self._Token[i].addChildTo(SelectObjects);
-            _keyword = _Master[self._Token[i].id].meaning;
+            _keyword = (CurrentGameData.Language=='EN')?_Master[self._Token[i].id].message:_Master[self._Token[i].id].meaning;
           } else {
             self._Token[i].addChildTo(nonSelectObjects);
           }

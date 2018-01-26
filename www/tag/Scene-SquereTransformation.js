@@ -101,14 +101,14 @@ phina.define('SelectCardTransformationScene', {
     var self = this;
     self.ChoiceOrder = options.ChoiceOrder;
 
-    var _UnconsciousAngel = CurrentGameData.UnconsciousAngel;
-    var _UnconsciousInsight = CurrentGameData.UnconsciousInsight;
-    var _UnconsciousSetback = CurrentGameData.UnconsciousSetback;
+    var _UnconsciousAngel = CurrentGameData.UnconsciousAngel||'';
+    var _UnconsciousInsight = CurrentGameData.UnconsciousInsight||'';
+    var _UnconsciousSetback = CurrentGameData.UnconsciousSetback||'';
 
     var _msg = i18n.SquereTransformationCard;
-    _msg = _msg.replace(/α/g,_UnconsciousAngel)
-                .replace(/γ/g,_UnconsciousInsight)
-                .replace(/δ/g,_UnconsciousSetback);
+    _msg = _msg.replace(/α/g,_UnconsciousAngel.length)
+                .replace(/γ/g,_UnconsciousInsight.length)
+                .replace(/δ/g,_UnconsciousSetback.length);
 
     if (options.ChoiceOrder == 2) {
       _msg = i18n.SquereTransformation2ndCard + _msg;

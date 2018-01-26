@@ -11,7 +11,7 @@ phina.define('SquereMiracleSceneSequence' , {
         {
           label: 'BackgroundRainbow',
           className: 'BackgroundRainbowScene',
-          nextLabel: 'PartyPopper',
+          nextLabel: 'SquereMiracle',
         },
         {
           label: 'SquereMiracle',
