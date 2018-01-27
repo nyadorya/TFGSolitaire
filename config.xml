@@ -44,7 +44,7 @@
         <preference name="orientation" value="all" />
         <access allows-arbitrary-loads-for-media="true" allows-arbitrary-loads-in-web-content="true" allows-local-networking="true" origin="*" />
     </platform>
-    <preference name="phonegap-version" value="8.0.0" />
+    <preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Orientation" value="portrait" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.3" />
