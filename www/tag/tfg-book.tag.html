@@ -3,6 +3,7 @@
     <div if={CurrentGameData.UserName != 'anonymous'}>
       <p>{i18n.ButtonSaveGame}</p>
       <button onclick={ saveGame }>{i18n.ButtonSaveGame}</button>
+      <button onclick={ exitGame }>{i18n.ButtonExitGame}</button>
       <hr>
       <p>{i18n.LoadLastGames}</p>
       <table>
@@ -62,6 +63,16 @@
       .catch(
       );
       
+    }
+
+    exitGame(e) {
+      if (navigator.app) {
+          navigator.app.exitApp();
+      } else if (navigator.device) {
+          navigator.device.exitApp();
+      } else {
+          window.close();
+      }
     }
 
     reLoad(e) {

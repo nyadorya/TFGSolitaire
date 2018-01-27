@@ -76,6 +76,7 @@ i18n.ButtonEnd = 'End';
 i18n.ButtonRecomfirm = 'Reconfirm';
 i18n.ButtonMoveSquere = 'Move Squere';
 i18n.ButtonKeepCookie = 'keep your ID(On YOUR Machine)';
+i18n.ButtonExitGame = 'Exit Aplication';
 
 //カード名
 i18n.NameCardAngel = 'Angel Card';
