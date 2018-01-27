@@ -422,7 +422,7 @@ phina.define('LevelUpAngelCardScene', {
           //選択されたカード
           self._Angel[i].addChildTo(SelectObjects);
           _keywords = _keywords + (_keywords==''?'':',');
-          _keywords = _keywords + ((CurrentGameData.Language=='EN')?i18n.CardAngels[self._Angel[i].id].message:i18n.CardAngels[self._Angel[i].id].meaning;
+          _keywords = _keywords + ((CurrentGameData.Language=='EN')?i18n.CardAngels[self._Angel[i].id].message:i18n.CardAngels[self._Angel[i].id].meaning);
         } else {
           self._Angel[i].addChildTo(nonSelectObjects);
         }

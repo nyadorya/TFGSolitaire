@@ -546,7 +546,7 @@ phina.define('SelectTokenBoxToScoreScene', {
 
         //これでイベントはとれる
         for (var _id = 0;_id < self._selectedToken.length;_id++) {
-          self._selectedToken[_id].on('pointend', function(e) {
+          self._selectedToken[_id].one('pointend', function(e) {
             this.openFace(e);
             self.flare('visibleButton',{message:this.getMessage(),meaning:this.getMeaning()});
           });
@@ -1984,11 +1984,6 @@ phina.define('AmimateClearPainScene', {
       numberOfDepressionTokens : 4,
     });
 
-    //仮実装
-    //実際には解放する痛みを選ばせないとダメかな
-    //解放理由を確認する必要があるか
-    //解放時もただPain抜くのではなく値を代入する（↑が参考）
-
     this.superInit(options);
     this.backgroundColor = 'rgba(0, 0, 0, 0.5)';
     this.cbname = options.cbname;
@@ -2110,190 +2105,6 @@ phina.define('AmimateClearAllPainScene', {
 
   }
 });
-
-//パーティポッパーシーン
-phina.define('PartyPopperScene', {
-  NUM : 400,
-  SHAPE_SIZE : 15,
-
-  superClass: 'DisplayScene',
-
-  init: function(options) {
-    this.superInit(options);
-
-    var self = this;
-    this.backgroundColor = options.backgroundColor||appBackGroundColor;
-    this.cbname = options.cbname;
-    this.setInteractive(false);
-    this.sceneframe = 0;
-
-    this._label = function(opt){ return Label({
-                        text: 'Congratulations!\n(Touch to next)',
-                        align: 'center',
-                        baseline: 'top',
-                        fontSize:40,
-                        fontColor :'black',
-                        x:320,
-                        y:480,
-                        });}
-    this._msg = this._label().addChildTo(this).hide();
-
-    this.shapes = [];
-    (this.NUM).times(function(i) {
-      self.shapes.push(
-        RectangleShape({
-          width: this.SHAPE_SIZE*0.2,
-          height: this.SHAPE_SIZE*0.2,
-          padding: 0,
-          x:i<self.NUM/2?-60:700,
-          y:1200,
-        })
-      );
-      
-      self.shapes[i].addChildTo(self);
-
-      var hue = Random.randint(0, 360);
-      var saturation = Random.randint(90, 100);
-      var lightness = 40;
-
-      self.shapes[i].fill = 'hsl({0}, {1}%, {2}%)'.format(hue, saturation, lightness);
-      self.shapes[i].stroke = 'hsl({0}, {1}%, {2}%)'.format(Math.abs(hue-180), saturation, Math.abs(lightness-100));
-      
-      self.shapes[i].rotation = Random.randint(0,359);
-    });
-
-    this.on('pointend',function(){
-      self.app.flare(self.cbname);
-      self.exit();
-    });
-  },
-  update : function() {
-    var self = this;
-    var _goFire = true;
-
-    this.sceneframe = this.sceneframe + 1;
-
-    if (this.sceneframe%10 === 0) {
-      if (this.sceneframe  < 30) {
-        this.shapes.forEach(function(val,index,ar){
-          self.shapes[index].physical.gravity.x = index<self.NUM/2?Random.randint(5,40)*0.01:Random.randint(-40,-5)*0.01;
-          self.shapes[index].physical.gravity.y = Random.randint(-180,-220)*0.01;
-        })
-      } else {
-        this.shapes.forEach(function(val,index,ar){
-          if (Math.random() > 0.5) {
-            var _wk = self.shapes[index].fill;
-            self.shapes[index].fill = self.shapes[index].stroke;
-            self.shapes[index].stroke = _wk;
-          }
-
-          self.shapes[index].rotation = (self.shapes[index].rotation + 30)%360;
-          self.shapes[index].width = Random.randint(self.SHAPE_SIZE*0.2,self.SHAPE_SIZE*1.2);
-          self.shapes[index].height = Random.randint(self.SHAPE_SIZE*0.2,self.SHAPE_SIZE*1.2);
-          self.shapes[index].physical.gravity.x = Random.randint(-50,50)*0.01;
-          self.shapes[index].physical.gravity.y = Random.randint(-20,190)*0.01;
-        })
-      }
-    }
-
-    if (_goFire) {
-      if (this.sceneframe >  100) {
-        this._msg.show();
-        this.setInteractive(true);
-        _goFire = false;
-      }
-    }
-  },
-});
-
-//くす玉シーン
-phina.define('PaperBallScene', {
-  NUM : 200,
-  SHAPE_SIZE : 20,
-
-  superClass: 'DisplayScene',
-
-  init: function(options) {
-    this.superInit(options);
-
-    var self = this;
-    this.backgroundColor = options.backgroundColor||appBackGroundColor;
-    this.cbname = options.cbname;
-    this.setInteractive(false);
-    this.sceneframe = 0;
-
-    this._label = function(opt){ return Label({
-                        text: 'Congratulations!\n(Touch to next)',
-                        align: 'center',
-                        baseline: 'top',
-                        fontSize:40,
-                        fontColor :'black',
-                        x:320,
-                        y:480,
-                        });}
-    this._msg = this._label().addChildTo(this).hide();
-
-    this.shapes = [];
-    (this.NUM).times(function(i) {
-      self.shapes.push(
-        RectangleShape({
-          width: this.SHAPE_SIZE*0.2,
-          height: this.SHAPE_SIZE*0.2,
-          padding: 0,
-          x:320,
-          y:0,
-        })
-      );
-      
-      self.shapes[i].addChildTo(self);
-
-      var hue = Random.randint(0, 360);
-      var saturation = Random.randint(90, 100);
-      var lightness = 40;
-
-      self.shapes[i].fill = 'hsl({0}, {1}%, {2}%)'.format(hue, saturation, lightness);
-      self.shapes[i].stroke = 'hsl({0}, {1}%, {2}%)'.format(Math.abs(hue-180), saturation, Math.abs(lightness-100));
-      
-      self.shapes[i].rotation = Random.randint(0,359);
-    });
-
-    this.on('pointend',function(){
-      self.app.flare(self.cbname);
-      self.exit();
-    });
-  },
-  update : function() {
-    var self = this;
-    var _goFire = true;
-
-    this.sceneframe = this.sceneframe + 1;
-
-    if (this.sceneframe%10 === 0) {
-      this.shapes.forEach(function(val,index,ar){
-        if (Math.random() > 0.5) {
-          var _wk = self.shapes[index].fill;
-          self.shapes[index].fill = self.shapes[index].stroke;
-          self.shapes[index].stroke = _wk;
-        }
-
-        self.shapes[index].rotation = (self.shapes[index].rotation + 30)%360;
-        self.shapes[index].width = Random.randint(self.SHAPE_SIZE*0.2,self.SHAPE_SIZE*1.2);
-        self.shapes[index].height = Random.randint(self.SHAPE_SIZE*0.2,self.SHAPE_SIZE*1.2);
-        self.shapes[index].physical.gravity.x = Random.randint(-50,50)*0.01;
-        self.shapes[index].physical.gravity.y = Random.randint(-20,190)*0.01;
-      });
-    }
-
-    if (_goFire) {
-      if (this.sceneframe > 100) {
-        this._msg.show();
-        this.setInteractive(true);
-        _goFire = false;
-      }
-    }
-  },
-});
-
 
 
 //サービストークンのアニメーションシーン

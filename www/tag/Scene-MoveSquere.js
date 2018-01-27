@@ -102,14 +102,14 @@ phina.define('MoveSquereScene', {
       }
       switch (options.conditions) {
         case 'ALL':
-          if (Squares[_nextSteps%Squares.length].mark == 'Transformation') {
+          if ((Squares[_nextSteps%Squares.length].mark).toLowerCase() == 'transformation') {
             self.nextScene({nextSteps:_nextSteps});
           } else {
             self.reselectSquere({nextSteps:_nextSteps,conditions:options.conditions});
           }
           break;
         default:
-          if (Squares[_nextSteps%Squares.length].mark == options.conditions) {
+          if ((Squares[_nextSteps%Squares.length].mark).toLowerCase() == (options.conditions).toLowerCase()) {
             self.nextScene({nextSteps:_nextSteps});
           } else {
             self.reselectSquere({nextSteps:_nextSteps,conditions:options.conditions});
