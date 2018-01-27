@@ -4,7 +4,7 @@
     <description>
         TFGSolitaire is Solitaire game of Transformation Game.
     </description>
-    <author email="kazu7108+tfg@gmail.com" href="http://">
+    <author email="kazu7110+tfg@gmail.com" href="http://">
         Kazushige Kodama
     </author>
     <content src="index.html" />
@@ -32,6 +32,7 @@
         <icon height="40" platform="ios" src="www/res/icon/ios/iPad-20@2x.png" width="40" />
         <icon height="40" platform="ios" src="www/res/icon/ios/iPhone-20@2x.png" width="40" />
         <icon height="60" platform="ios" src="www/res/icon/ios/iPhone-20@3x.png" width="60" />
+        <icon src="www/res/icon/ios/icon-1024.png" width="1024" height="1024" />
     </platform>
     <access origin="*" />
     <access subdomains="true" uri="*" />
@@ -43,8 +44,8 @@
         <preference name="orientation" value="all" />
         <access allows-arbitrary-loads-for-media="true" allows-arbitrary-loads-in-web-content="true" allows-local-networking="true" origin="*" />
     </platform>
+    <preference name="phonegap-version" value="8.0.0" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Orientation" value="portrait" />
-    <engine name="android" spec="~6.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.3" />
 </widget>
