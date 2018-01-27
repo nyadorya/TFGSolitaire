@@ -77,6 +77,8 @@ i18n.ButtonRecomfirm = 'Reconfirm';
 i18n.ButtonMoveSquere = 'Move Squere';
 i18n.ButtonKeepCookie = 'keep your ID(On YOUR Machine)';
 i18n.ButtonExitGame = 'Exit Aplication';
+i18n.PleasePurchase = 'The number of savegames will increase by 1000jpYen(To: tfgsolitaire@svk.jp/From:(your account))';
+i18n.PurchaseURL = 'https://www.amazon.co.jp/dp/BT00DHI8G4';
 
 //カード名
 i18n.NameCardAngel = 'Angel Card';
