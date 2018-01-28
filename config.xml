@@ -49,6 +49,6 @@
     <preference name="Orientation" value="portrait" />
     <plugin name="cordova-plugin-whitelist" spec="~1.3.3" />
     <gap:plugin name="cc.fovea.cordova.purchase" source="npm" version="6.0.0" />
-      <param name="BILLING_KEY" value="mkildfilhdifncioicbofdgg.AO-J1Oc-R1HSg"/>
+      <param name="BILLING_KEY" value="mkildfilhdifncioicbofdgg"/>
     </gap:plugin>
 </widget>
