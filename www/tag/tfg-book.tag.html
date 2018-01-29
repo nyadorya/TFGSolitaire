@@ -17,6 +17,7 @@
       <p class='small'>{i18n.ToLoadTheGameClickLinkAbove}</p>
       <hr>
       <a class='small' href={i18n.PurchaseURL}>{i18n.PleasePurchase}</a>
+      <button onclick={ buySave }>BUY Save</button>
     </div>
     <div if={CurrentGameData.UserName == 'anonymous'}>
       <p class='small'>{i18n.CantSaveOrLoadGames}</p>
@@ -66,6 +67,26 @@
       );
       
     }
+
+    buySave(e) {
+       store.verbosity = store.INFO;
+       store.register({
+         id:     "jp.echopeace.tfgsolitaire.save",
+         alias: "Add Save",
+         type:  store.PAID_SUBSCRIPTION  // 定期購入ならstore.PAID_SUBSCRIPTION
+       });
+    
+       store.ready();
+    
+       /* 購入ダイアログ表示 */
+       store.order("jp.echopeace.tfgsolitaire.save");
+       // 購入完了イベント
+       store.when("order").approved(function(product) {
+         product.finish();
+       });
+       store.refresh();
+   }
+
 
     exitGame(e) {
       if (navigator.app) {
