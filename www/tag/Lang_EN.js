@@ -79,6 +79,7 @@ i18n.ButtonKeepCookie = 'keep your ID(On YOUR Machine)';
 i18n.ButtonExitGame = 'Exit Aplication';
 i18n.PleasePurchase = 'The number of savegames will increase by 1000jpYen(To: tfgsolitaire@svk.jp/From:(your account))';
 i18n.PurchaseURL = 'https://www.amazon.co.jp/dp/BT00DHI8G4';
+i18n.SuggestSave = 'Save past games and compare them with play contents? ';
 
 //カード名
 i18n.NameCardAngel = 'Angel Card';

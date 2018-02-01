@@ -16,8 +16,10 @@
       </table>
       <p class='small'>{i18n.ToLoadTheGameClickLinkAbove}</p>
       <hr>
-      <a class='small' href={i18n.PurchaseURL}>{i18n.PleasePurchase}</a>
+      <!-- <a class='small' href={i18n.PurchaseURL}>{i18n.PleasePurchase}</a> -->
+      <div class='small'>{i18n.SuggestSave}
       <button onclick={ buySave }>BUY Save</button>
+      </div>
     </div>
     <div if={CurrentGameData.UserName == 'anonymous'}>
       <p class='small'>{i18n.CantSaveOrLoadGames}</p>

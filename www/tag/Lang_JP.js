@@ -79,6 +79,7 @@ i18n.ButtonKeepCookie = 'ユーザIDを保存する';
 i18n.ButtonExitGame = 'アプリ終了';
 i18n.PleasePurchase = '1000円ごとにセーブ数増えます（受取人：tfgsolitaire@svk.jp／贈り主：アカウント名）';
 i18n.PurchaseURL = 'https://www.amazon.co.jp/dp/BT00DHI8G4';
+i18n.SuggestSave = '過去のゲームを保存して、プレイ内容と比較してみませんか？';
 
 //カード名
 i18n.NameCardAngel = 'エンジェルカード';
