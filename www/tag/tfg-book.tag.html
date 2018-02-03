@@ -71,22 +71,45 @@
     }
 
     buySave(e) {
-       store.verbosity = store.INFO;
-       store.register({
-         id:     "jp.echopeace.tfgsolitaire.save",
-         alias: "Add Save",
-         type:  store.CONSUMABLE,
-       });
-    
-       store.ready();
-    
-       /* 購入ダイアログ表示 */
-       store.order("jp.echopeace.tfgsolitaire.save");
-       // 購入完了イベント
-       store.when("order").approved(function(product) {
-         product.finish();
-       });
-       store.refresh();
+        //cognito更新内容定義            
+        var params = {
+            UserAttributes: [{
+                Name: 'custom:SavePoint', 
+                Value: (parseInt(TfAp.SavePoint)+1).toString(),
+            },],
+            UserPoolId: TfAp.awsUserPoolId,
+            Username: CurrentGameData.UserName,
+        };
+        //インスタンス化
+        var cognitoSP = new AWS.CognitoIdentityServiceProvider({apiVersion: '2016-04-18'});
+        
+        //cordova支払い
+        store.verbosity = store.INFO;
+        store.register({
+            id:     "jp.echopeace.tfgsolitaire.save",
+            type:  store.CONSUMABLE,
+            alias: "Add Save",
+        });
+        
+        store.ready();
+        
+        //購入ダイアログ表示
+        store.order("jp.echopeace.tfgsolitaire.save");
+        //購入完了イベント
+        store.when("order").approved(function(product) {
+            cognitoSP.adminUpdateUserAttributes(params, function(err, data) {
+                 if (err) {
+                     //console.log(err, err.stack); // an error occurred
+                 } else {
+                     //console.log(data); // successful response
+                     TfAp.SavePoint = parseInt(TfAp.SavePoint)+1;
+                     riot.mount('tfg-book');
+                 }
+            });
+
+            product.finish();
+        });
+        store.refresh();
    }
 
 
