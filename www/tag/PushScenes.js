@@ -1752,8 +1752,8 @@ phina.define('ClaerPainScene', {
     switch (pain.PutPainScene) {
       case 'Setback':
         _objCard = TfAp.MasterDecks(pain.CardType);
-        _ret = _ret + '\n' + i18n.Detail + '：\n' + (CurrentGameData.Language=='EN')?_objCard[pain.CardId].message:_objCard[pain.CardId].meaning;
-        _painmessage = _painmessage + ':' + (CurrentGameData.Language=='EN')?_objCard[pain.CardId].message:_objCard[pain.CardId].meaning;
+        _ret = _ret + '\n' + i18n.Detail + '：\n' + ((CurrentGameData.Language=='EN')?(_objCard[pain.CardId].message):(_objCard[pain.CardId].meaning));
+        _painmessage = _painmessage + ':' + ((CurrentGameData.Language=='EN')?(_objCard[pain.CardId].message):(_objCard[pain.CardId].meaning));
         break;
       case 'Depression':
         _ret = _ret + i18n.Pain + '：' + i18n.PutDepressionMessage;
