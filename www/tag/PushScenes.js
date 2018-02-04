@@ -678,6 +678,7 @@ phina.define('SelectDeckToScoreUniversalFeedbackScene', {
       OpenMessage : true,
     });
 
+    //ユニバーサルフィードバックだけは常にデッキに全数あり常にシャッフル
     var _deck = [];
     for (i in options.Master) {
       _deck.push(options.Master[i].id);
@@ -709,17 +710,19 @@ phina.define('SelectDeckToScoreInsightScene', {
       CardClass : InsightCard,
       Master : i18n.CardInsights,
       OpenMessage : true,
-      Deck : CurrentGameData.UnconsciousInsight,
       Message : i18n.SelectedInsightMessage,
       Log : i18n.SelectedInsightLog,
 
     });
 
-    var _deck = [];
-    for (i in options.Master) {
-      _deck.push(options.Master[i].id);
+    if (CurrentGameData.DeckInsight == void 0 || CurrentGameData.DeckInsight.length == 0) {
+      var _deck = [];
+      for (i in options.Master) {
+        _deck.push(options.Master[i].id);
+      }
+      CurrentGameData.DeckInsight = _deck.shuffle();
     }
-    options.Deck = _deck.shuffle();
+    options.Deck = CurrentGameData.DeckInsight;
 
     if (CurrentGameData.ScoreCardLevel == void 0 || CurrentGameData.ScoreCardLevel < 0) {
       CurrentGameData.ScoreCardLevel = 0;
@@ -746,18 +749,20 @@ phina.define('SelectDeckToScoreSetbackScene', {
       CardClass : SetbackCard,
       Master : i18n.CardSetbacks,
       OpenMessage : true,
-      Deck : CurrentGameData.UnconsciousSetback,
       Message : i18n.SelectedSetbackMessage,
       Log : i18n.SelectedSetbackLog,
       isNoPain : false,
 
     });
 
-    var _deck = [];
-    for (i in options.Master) {
-      _deck.push(options.Master[i].id);
+    if (CurrentGameData.DeckSetback == void 0 || CurrentGameData.DeckSetback.length == 0) {
+      var _deck = [];
+      for (i in options.Master) {
+        _deck.push(options.Master[i].id);
+      }
+      CurrentGameData.DeckSetback = _deck.shuffle();
     }
-    options.Deck = _deck.shuffle();
+    options.Deck = CurrentGameData.DeckSetback;
 
     if (CurrentGameData.ScoreCardLevel == void 0 || CurrentGameData.ScoreCardLevel < 0) {
       CurrentGameData.ScoreCardLevel = 0;
@@ -784,17 +789,19 @@ phina.define('SelectDeckToScoreAngelScene', {
       CardClass : AngelCard,
       Master : i18n.CardAngels,
       OpenMessage : true,
-      Deck : CurrentGameData.UnconsciousAngel,
       Message : i18n.SelectedAngelMessage + i18n.SelectedAngelAfterMessage,
       Log : i18n.SelectedAngelLog,
 
     });
 
-    var _deck = [];
-    for (i in options.Master) {
-      _deck.push(options.Master[i].id);
+    if (CurrentGameData.DeckAngel == void 0 || CurrentGameData.DeckAngel.length == 0) {
+      var _deck = [];
+      for (i in options.Master) {
+        _deck.push(options.Master[i].id);
+      }
+      CurrentGameData.DeckAngel = _deck.shuffle();
     }
-    options.Deck = _deck.shuffle();
+    options.Deck = CurrentGameData.DeckAngel;
 
     if (CurrentGameData.ScoreCardLevel == void 0 || CurrentGameData.ScoreCardLevel < 0) {
       CurrentGameData.ScoreCardLevel = 0;
@@ -841,8 +848,7 @@ phina.define('SelectToScoreScene', {
     this.OpenMessage = options.OpenMessage;
     this.activeUpdate = true;
     this.selectId = -1;
-    this.SelectFrom = options.SelectFrom;
-    this.SelectFrom = this.SelectFrom=='Deck'?'Deck':'Envelope';
+    this.SelectFrom = options.SelectFrom=='Deck'?'Deck':'Envelope';
     this.Transform = options.Transform;
     this.isNoPain = options.isNoPain;
     this.cbname = options.cbname;
