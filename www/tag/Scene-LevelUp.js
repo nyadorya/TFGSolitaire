@@ -528,7 +528,7 @@ phina.define('LevelUpServiceTokenScene', {
           this.isSelected = false;
           var _delId = self._SelectedService.indexOf(this);
           self._SelectedService.splice(_delId, 1);
-        } else if (self.SelectedCurrentLevelService > _selectedNumberOfTokens) {
+        } else if (self.SelectedCurrentLevelService > _selectedNumberOfTokens + 1) {
           _selectedNumberOfTokens = _selectedNumberOfTokens + 1;
           this.alpha = 0.3;
           this.isSelected = true;

@@ -103,9 +103,9 @@ phina.define('MoveSquereScene', {
       switch (options.conditions) {
         case 'ALL':
           if ((Squares[_nextSteps%Squares.length].mark).toLowerCase() == 'transformation') {
-            self.nextScene({nextSteps:_nextSteps});
-          } else {
             self.reselectSquere({nextSteps:_nextSteps,conditions:options.conditions});
+          } else {
+            self.nextScene({nextSteps:_nextSteps});
           }
           break;
         default:
