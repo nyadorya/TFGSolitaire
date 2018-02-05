@@ -489,7 +489,7 @@ phina.define('LevelUpServiceTokenScene', {
     //メッセージウインドウ
     var _SelectExchangeServiceMessage = i18n.SelectExchangeServiceMessage;
     var _btnName = i18n.OK;
-    if (this.SelectedCurrentLevelService <= 2) {
+    if (this.SelectedCurrentLevelService <= 1) {
       _SelectExchangeServiceMessage = i18n.SelectExchangeNoServiceMessage;
       _btnName = i18n.ButtonNext;
     }
@@ -553,11 +553,12 @@ phina.define('LevelUpServiceTokenScene', {
     this.NGButton = this._selectButton({text:'NG',width:150,x:450}).addChildTo(this).hide().setInteractive(false);
 
     this.SelectExchangeServiceMessage.ButtonA.on('push', function(e) {
-      if (self.SelectedCurrentLevelService <= 2) {
+      if (self.SelectedCurrentLevelService <= 1) {
         self.exit();
       }
 
-      if (self.SelectedCurrentLevelService - _selectedNumberOfTokens < 2) {
+      //選択したトークン＋１（本来残すべきカードの１枚）が持っているカードを超えてない
+      if (self.SelectedCurrentLevelService < _selectedNumberOfTokens + 1) {
         return;
       }
 
