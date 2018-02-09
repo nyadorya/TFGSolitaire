@@ -110,6 +110,11 @@ i18n.PleaseCertify = 'Please certify.';
 i18n.CertificationFailed = 'certification failed.';
 i18n.SignUpFailed = 'You failed to sign up.';
 i18n.RegistFailed = 'You failed to resist.';
+i18n.conditionsUsername = 'already used by someone else can not be used.';
+i18n.conditionsPassword = 'More than 6 characters';
+i18n.conditionsEmail = 'Authentication code will be sent to this address.';
+i18n.WhenAlertDisplayed = 'When an alert is displayed, the following are possible. \n1) The name you entered is already in use by another person. \n2) Incorrect password (5 letters or less) ';
+i18n.EnterYourCode = 'Sending an authentication code (verification code) to the email address you entered. Please enter the code of the mail.';
 
 i18n.WouldContinueFromLast = 'Would you like to continue from the previous continuation? ';
 i18n.WouldStartNewGame = 'Would you like to start a new game?';

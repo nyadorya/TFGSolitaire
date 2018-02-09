@@ -211,22 +211,27 @@
 <signup>
   <div class="mainarea">
     Enter a Username:
-    <input id="signup-username" type="text" class="text-edit" value="kazu"/><br>
+    <input id="signup-username" type="text" class="text-edit" value=""/><br>{conditionsUsername}<br>
     Enter a Password:
-    <input id="signup-password" type="password" class="text-edit" value="jkjkjk"/><br>
+    <input id="signup-password" type="password" class="text-edit" value=""/><br>{conditionsPassword}<br>
     Enter a email:
-    <input id="signup-email" type="text" class="text-edit" value="kazu7108+aws@gmail.com"/>
+    <input id="signup-email" type="text" class="text-edit" value=""/><br>{conditionsEmail}<br>
     <button id="register-button" onclick={performSignUp} class="button">Sign Up</button>
     <button id="login-button" onclick={goLogin} class="button">Go Login</button>
   </div>
   <p>{dispmsg}</p>
 
   <script>
+    this.conditionsUsername = i18n.conditionsUsername;
+    this.conditionsPassword = i18n.conditionsPassword;
+    this.conditionsEmail = i18n.conditionsEmail;
+    this.dispmsg = i18n.WhenAlertDisplayed;
     goLogin(e) {
       riot.mount('app-main', 'login');
     }
 
     performSignUp(e) {
+      var self = this;
       // get the username/password combination from the UI
       var _username = document.getElementById("signup-username").value;
       var _password = document.getElementById("signup-password").value;
@@ -247,13 +252,13 @@
         ]
       };
 
-      cognitoSP.signUp(params, function(err, data) {
+      var hoge = cognitoSP.signUp(params, function(err, data) {
         if (err) {
-          console.log(err, err.stack)
-          this.dispmsg = i18n.SignUpFailed;
+          alert(err.message);
+          console.log(err, err.stack);
         } else {
           console.log(data);       // successful response
-          riot.mount('app-main', 'regist');
+                riot.mount('app-main', 'regist',{Username:_username});
         }
       });
     }
@@ -266,7 +271,7 @@
 <regist>
   <div class="mainarea">
     Enter a Username:
-    <input id="regist-username" type="text" class="text-edit" value="kazu"/><br>
+    <input id="regist-username" type="text" class="text-edit" value={opts.Username}/><br>
     Enter a code:
     <input id="regist-code" type="text" class="text-edit" value=""/>
     <button id="register-button" onclick={performRegist} class="button">Regist</button>
@@ -274,6 +279,8 @@
   <p>{dispmsg}</p>
 
   <script>
+    this.dispmsg = i18n.EnterYourCode;
+
     performRegist(e) {
       // get the username/password combination from the UI
       var _username = document.getElementById("regist-username").value;
@@ -290,7 +297,7 @@
       cognitoSP.confirmSignUp(params, function(err, data) {
         if (err) {
           console.log(err, err.stack)
-          this.dispmsg = i18n.RegistFailed;
+          alert(i18n.RegistFailed);
         } else {
           CurrentGameData.UserName = _username;
           TfAp.WriteGameLog(i18n.LogGameStart + CurrentGameData.UserName);

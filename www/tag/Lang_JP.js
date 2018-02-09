@@ -110,6 +110,11 @@ i18n.PleaseCertify = '認証してください。';
 i18n.CertificationFailed = '認証に失敗しました。';
 i18n.SignUpFailed = 'サインアップに失敗しました。';
 i18n.RegistFailed = 'レジストに失敗しました。';
+i18n.conditionsUsername = 'すでに他の方が使っている名前は使えません。';
+i18n.conditionsPassword = '６文字以上';
+i18n.conditionsEmail = 'このアドレスに認証用コードが送付されます。';
+i18n.WhenAlertDisplayed = 'アラートが表示された場合は以下が考えられます。\n1)入力した名前がすでに他の方に使われている。\n2)パスワードが不適当（５文字以下など）';
+i18n.EnterYourCode = '認証コード（verification code）を入力したメールアドレス宛に送付しています。そのメールのコードを入力してください。';
 
 i18n.WouldContinueFromLast = '前回の続きから行いますか？';
 i18n.WouldStartNewGame = '新たにゲームを開始しますか？'

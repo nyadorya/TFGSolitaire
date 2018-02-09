@@ -22,6 +22,7 @@
       </div>
     </div>
     <div if={CurrentGameData.UserName == 'anonymous'}>
+      <button onclick={ exitGame }>{i18n.ButtonExitGame}</button>
       <p class='small'>{i18n.CantSaveOrLoadGames}</p>
     </div>
   </article>
