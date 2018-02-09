@@ -254,11 +254,11 @@
 
       var hoge = cognitoSP.signUp(params, function(err, data) {
         if (err) {
-          alert(err.message);
+          alert(i18n.RegistFailed);
           console.log(err, err.stack);
         } else {
           console.log(data);       // successful response
-                riot.mount('app-main', 'regist',{Username:_username});
+          riot.mount('app-main', 'regist',{Username:_username});
         }
       });
     }
