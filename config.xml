@@ -44,6 +44,7 @@
         <preference name="orientation" value="all" />
         <access allows-arbitrary-loads-for-media="true" allows-arbitrary-loads-in-web-content="true" allows-local-networking="true" origin="*" />
     </platform>
+    <preference name="android-targetSdkVersion"  value="26" />
     <preference name="phonegap-version" value="cli-7.0.1" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Orientation" value="portrait" />
