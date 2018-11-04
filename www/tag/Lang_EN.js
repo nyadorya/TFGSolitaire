@@ -12,6 +12,7 @@ i18n.Dice = 'Dice';
 i18n.Decision = 'Decision';
 i18n.Detail = 'Detail';
 i18n.Direction = 'Direction';
+i18n.MenuMessage = '<- There is a menu on the left side. I select letters when selected. (List: Booking, Help, Focus, playNote, playLog, mainGame).';
 
 i18n.Envelope = 'Unconcious Envelope';
 

@@ -12,6 +12,7 @@ i18n.Dice = 'ダイス';
 i18n.Decision = '決定';
 i18n.Detail = '内容';
 i18n.Direction = '方向';
+i18n.MenuMessage = '←左端にメニューがあります。選択すると文字がでます。(Booking,Help,Focus,playNote,playLog,mainGame)';
 
 i18n.Envelope = '無意識の封筒';
 
